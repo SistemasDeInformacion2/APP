@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=id_historia_usuario\ id_product_owner\ complejidad\ descripcion
+comment0.target=Tarea(int,\ int,\ int,\ java.lang.String)
+comment1.params=
+comment1.target=java.lang.String\ getDescripcion()
+comment2.params=
+comment2.target=int\ getComplejidad()
+numComments=3

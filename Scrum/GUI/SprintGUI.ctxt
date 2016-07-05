@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=
+comment0.target=SprintGUI()
+comment1.params=
+comment1.target=void\ initComponents()
+comment2.params=evt
+comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment3.params=evt
+comment3.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment4.params=evt
+comment4.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment5.params=evt
+comment5.target=void\ tituloHistoriaActionPerformed(java.awt.event.ActionEvent)
+comment6.params=evt
+comment6.target=void\ valorImportanciaActionPerformed(java.awt.event.ActionEvent)
+comment7.params=evt
+comment7.target=void\ valorComplejidadActionPerformed(java.awt.event.ActionEvent)
+numComments=8

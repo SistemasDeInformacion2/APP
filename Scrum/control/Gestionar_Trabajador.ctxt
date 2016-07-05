@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Gestionar_Trabajador()
+comment1.params=nombre\ apellido\ rol
+comment1.target=boolean\ addTrabajador(java.lang.String,\ java.lang.String,\ int)
+numComments=2

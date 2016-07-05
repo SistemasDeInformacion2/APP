@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Gestionar_Tareas()
+comment1.params=id_historia_usuario\ id_product_owner\ descripcion\ complejidad
+comment1.target=boolean\ subir_Tareas(int,\ int,\ java.lang.String,\ int)
+comment2.params=
+comment2.target=java.util.List\ getTareas()
+comment3.params=id_historia_usuario
+comment3.target=java.util.List\ getTareas(int)
+numComments=4

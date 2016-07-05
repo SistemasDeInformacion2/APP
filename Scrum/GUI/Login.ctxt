@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=ventanaPrincipal
+comment0.target=Login(Principal)
+comment1.params=
+comment1.target=Login()
+comment2.params=
+comment2.target=void\ initComponents()
+comment3.params=evt
+comment3.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment4.params=evt
+comment4.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment5.params=evt
+comment5.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment6.params=evt
+comment6.target=void\ jButton1ActionPerformed(java.awt.event.ActionEvent)
+comment7.params=evt
+comment7.target=void\ jTextField1ActionPerformed(java.awt.event.ActionEvent)
+comment8.params=evt
+comment8.target=void\ jPasswordField1ActionPerformed(java.awt.event.ActionEvent)
+numComments=9

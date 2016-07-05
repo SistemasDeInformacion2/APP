@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Gestionar_Cuentas()
+comment1.params=username\ password\ password2
+comment1.target=boolean\ addCuenta(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment2.params=username\ password
+comment2.target=boolean\ comprobarCuenta(java.lang.String,\ java.lang.String)
+numComments=3
