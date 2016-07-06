@@ -30,4 +30,35 @@ public class TestHistoriaUsuario
         hu.setDescripcion("");
         assertNull(hu.getDescripcion());
     }
+    @Test
+    public void testAsociarTarea(){
+        assertEquals(0,hu.cantidadTareas());
+        
+        hu.asociarTarea(new Tarea("algo",12,2));
+        assertEquals(1,hu.cantidadTareas());
+        
+        hu.asociarTarea(new Tarea("otro",23,3));
+        assertEquals(2,hu.cantidadTareas());
+    }
+    @Test
+    public void testQuitarTarea(){
+        assertEquals(2,hu.cantidadTareas());
+        
+        hu.quitarTarea(1);
+        assertEquals(1,hu.cantidadTareas());
+        
+        hu.quitarTarea(2);
+        assertEquals(0,hu.cantidadTareas());
+        
+        hu.quitarTarea(4);
+        assertEquals(0,hu.cantidadTareas());
+    }
+    @Test
+    public void testSetImportancia(){
+        hu.setImportancia(3);
+        assertEquals(3,hu.getImportancia());
+        
+        hu.setImportancia(-3);
+        assertEquals(0,hu.getImportancia());
+    }
 }
