@@ -1,6 +1,6 @@
 -- -------------------------------------------------------------------------
 -- PostgreSQL SQL create tables
--- exported at Sun Jul 17 14:50:44 BOT 2016 with easyDesigner
+-- exported at Sun Jul 17 15:02:11 BOT 2016 with easyDesigner
 -- -------------------------------------------------------------------------
 
 -- -------------------------------------------------------------------------
@@ -89,18 +89,6 @@ CREATE TABLE "TEST" (
 );
 
 -- -------------------------------------------------------------------------
--- Table: TAREA
--- -------------------------------------------------------------------------
-CREATE TABLE "TAREA" (
-  "ID_TAREA" bigserial NOT NULL,
-  "HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
-  "NOMBRE" VARCHAR NULL,
-  "DESCRIPCION" VARCHAR NULL,
-  "IMPORTANCIA" VARCHAR NULL,
-  PRIMARY KEY ("ID_TAREA", "HISTORIA DE USUARIO_ID_HU")
-);
-
--- -------------------------------------------------------------------------
 -- Table: PERSONA
 -- -------------------------------------------------------------------------
 CREATE TABLE "PERSONA" (
@@ -134,6 +122,41 @@ CREATE TABLE "ASIGNAR USER_HU" (
 );
 
 -- -------------------------------------------------------------------------
+-- Table: EQUIPO
+-- -------------------------------------------------------------------------
+CREATE TABLE "EQUIPO" (
+  "ID_EQUIPO" bigserial NOT NULL,
+  PRIMARY KEY ("ID_EQUIPO")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: ASGINACION PERSONA_EQUIPO
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASGINACION PERSONA_EQUIPO" (
+  "PERSONA_ID_PERSONA" INTEGER NOT NULL,
+  "EQUIPO_ID_EQUIPO" INTEGER NOT NULL,
+  PRIMARY KEY ("PERSONA_ID_PERSONA", "EQUIPO_ID_EQUIPO")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: ASIGNACION EQUIPO_HU
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASIGNACION EQUIPO_HU" (
+  "HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
+  "EQUIPO_ID_EQUIPO" INTEGER NOT NULL,
+  PRIMARY KEY ("HISTORIA DE USUARIO_ID_HU", "EQUIPO_ID_EQUIPO")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: ASIGNACION HU_TEST
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASIGNACION HU_TEST" (
+  "TEST_ID_TEST" INTEGER NOT NULL,
+  "HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
+  PRIMARY KEY ("TEST_ID_TEST", "HISTORIA DE USUARIO_ID_HU")
+);
+
+-- -------------------------------------------------------------------------
 -- Table: PAR
 -- -------------------------------------------------------------------------
 CREATE TABLE "PAR" (
@@ -143,32 +166,12 @@ CREATE TABLE "PAR" (
 );
 
 -- -------------------------------------------------------------------------
--- Table: ASGINACION PERSONA_PAR
+-- Table: ASIGNACION PERSONA_PAR
 -- -------------------------------------------------------------------------
-CREATE TABLE "ASGINACION PERSONA_PAR" (
+CREATE TABLE "ASIGNACION PERSONA_PAR" (
+  "PAR_ID_PAR" INTEGER NOT NULL,
   "PERSONA_ID_PERSONA" INTEGER NOT NULL,
-  "PAR_ID_PAR" INTEGER NOT NULL,
-  PRIMARY KEY ("PERSONA_ID_PERSONA", "PAR_ID_PAR")
-);
-
--- -------------------------------------------------------------------------
--- Table: ASIGNACION PAR_TAREA
--- -------------------------------------------------------------------------
-CREATE TABLE "ASIGNACION PAR_TAREA" (
-  "PAR_ID_PAR" INTEGER NOT NULL,
-  "TAREA_ID_TAREA" INTEGER NOT NULL,
-  "TAREA_HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
-  PRIMARY KEY ("PAR_ID_PAR", "TAREA_ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HU")
-);
-
--- -------------------------------------------------------------------------
--- Table: ASIGNACION TAREA_TEST
--- -------------------------------------------------------------------------
-CREATE TABLE "ASIGNACION TAREA_TEST" (
-  "TAREA_ID_TAREA" INTEGER NOT NULL,
-  "TAREA_HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
-  "TEST_ID_TEST" INTEGER NOT NULL,
-  PRIMARY KEY ("TAREA_ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HU", "TEST_ID_TEST")
+  PRIMARY KEY ("PAR_ID_PAR", "PERSONA_ID_PERSONA")
 );
 
 -- -------------------------------------------------------------------------
@@ -208,14 +211,6 @@ ALTER TABLE "FUN_VIEW" ADD FOREIGN KEY ("VIEW_ID_VIEW")
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: TAREA
--- -------------------------------------------------------------------------
-ALTER TABLE "TAREA" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
-    REFERENCES "HISTORIA DE USUARIO" ("ID_HU")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-
--- -------------------------------------------------------------------------
 -- Relations for table: PERSONA
 -- -------------------------------------------------------------------------
 ALTER TABLE "PERSONA" ADD FOREIGN KEY ("USER_ID_USS") 
@@ -244,38 +239,50 @@ ALTER TABLE "ASIGNAR USER_HU" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU")
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: ASGINACION PERSONA_PAR
+-- Relations for table: ASGINACION PERSONA_EQUIPO
 -- -------------------------------------------------------------------------
-ALTER TABLE "ASGINACION PERSONA_PAR" ADD FOREIGN KEY ("PERSONA_ID_PERSONA") 
+ALTER TABLE "ASGINACION PERSONA_EQUIPO" ADD FOREIGN KEY ("PERSONA_ID_PERSONA") 
     REFERENCES "PERSONA" ("ID_PERSONA")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
-ALTER TABLE "ASGINACION PERSONA_PAR" ADD FOREIGN KEY ("PAR_ID_PAR") 
-    REFERENCES "PAR" ("ID_PAR")
+ALTER TABLE "ASGINACION PERSONA_EQUIPO" ADD FOREIGN KEY ("EQUIPO_ID_EQUIPO") 
+    REFERENCES "EQUIPO" ("ID_EQUIPO")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: ASIGNACION PAR_TAREA
+-- Relations for table: ASIGNACION EQUIPO_HU
 -- -------------------------------------------------------------------------
-ALTER TABLE "ASIGNACION PAR_TAREA" ADD FOREIGN KEY ("PAR_ID_PAR") 
-    REFERENCES "PAR" ("ID_PAR")
+ALTER TABLE "ASIGNACION EQUIPO_HU" ADD FOREIGN KEY ("EQUIPO_ID_EQUIPO") 
+    REFERENCES "EQUIPO" ("ID_EQUIPO")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
-ALTER TABLE "ASIGNACION PAR_TAREA" ADD FOREIGN KEY ("TAREA_ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HU") 
-    REFERENCES "TAREA" ("ID_TAREA", "HISTORIA DE USUARIO_ID_HU")
+ALTER TABLE "ASIGNACION EQUIPO_HU" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
+    REFERENCES "HISTORIA DE USUARIO" ("ID_HU")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: ASIGNACION TAREA_TEST
+-- Relations for table: ASIGNACION HU_TEST
 -- -------------------------------------------------------------------------
-ALTER TABLE "ASIGNACION TAREA_TEST" ADD FOREIGN KEY ("TAREA_ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HU") 
-    REFERENCES "TAREA" ("ID_TAREA", "HISTORIA DE USUARIO_ID_HU")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-ALTER TABLE "ASIGNACION TAREA_TEST" ADD FOREIGN KEY ("TEST_ID_TEST") 
+ALTER TABLE "ASIGNACION HU_TEST" ADD FOREIGN KEY ("TEST_ID_TEST") 
     REFERENCES "TEST" ("ID_TEST")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "ASIGNACION HU_TEST" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
+    REFERENCES "HISTORIA DE USUARIO" ("ID_HU")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: ASIGNACION PERSONA_PAR
+-- -------------------------------------------------------------------------
+ALTER TABLE "ASIGNACION PERSONA_PAR" ADD FOREIGN KEY ("PAR_ID_PAR") 
+    REFERENCES "PAR" ("ID_PAR")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "ASIGNACION PERSONA_PAR" ADD FOREIGN KEY ("PERSONA_ID_PERSONA") 
+    REFERENCES "PERSONA" ("ID_PERSONA")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
