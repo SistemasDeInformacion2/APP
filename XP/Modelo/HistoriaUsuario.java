@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import Control.*;
 
 public class HistoriaUsuario 
 {
@@ -9,10 +10,13 @@ public class HistoriaUsuario
     private int importancia;
     private boolean asignada=false;
     private boolean finalizada=false;
+    private boolean rechazada=false;
+    private ControlHU controlHU;
     
     public HistoriaUsuario()
     {
         tareas_asociadas = new ArrayList<Tarea>();
+        controlHU = new ControlHU();
     }
     
     public String getDescripcion()
@@ -59,26 +63,72 @@ public class HistoriaUsuario
     
     public void finalizarTarea(int pocision_tarea)
     {
-        tareas_asociadas.get(pocision_tarea).finalizada();
+        tareas_asociadas.get(pocision_tarea).finalizar();
+    }
+    
+    public void finalizarTarea( String nombre_Tarea )
+    {
+        boolean aux_tarea_encontrada=false;
+        
+        for( int i=0; i<tareas_asociadas.size() && !aux_tarea_encontrada; i++ )
+        {
+            if( tareas_asociadas.get(i).getDescripcion().equals( nombre_Tarea ) )
+            {
+                tareas_asociadas.get(i).finalizar();
+                aux_tarea_encontrada=true;
+            }
+        }
+        
+        if( progreso()==tareas_asociadas.size() )
+            finalizada=true;
+    } 
+    
+    public int progreso()
+    {
+        int progreso=0;
+        
+        for( int i=0; i<tareas_asociadas.size(); i++ )
+        {
+            if( tareas_asociadas.get(i).esta_finalizada() )
+                progreso++;
+        }
+        
+        return progreso;
     }
     
     public boolean estaFinalizada()
     {
-        int finalizadas=0;
-        
+        return finalizada;
+    }
+    
+    public void rechazarHistoria( String descripcion )
+    {
+        controlHU.rechazar( descripcion );
+        rechazada=true;
+    }
+    
+    public boolean estaRechazada()
+    {
+        return rechazada;
+    }
+    
+    public boolean estaAprobada()
+    {
+        return controlHU.estaAprobada();
+    }
+    
+    public void aprobar()
+    {
+        controlHU.aprobar();
+    }
+    
+    public void finalizar()
+    {
         for( int i=0; i<tareas_asociadas.size(); i++ )
         {
-            if(tareas_asociadas.get(i).esta_finalizada())
-            {
-                finalizadas++;
-            }
+            tareas_asociadas.get(i).finalizar();
         }
         
-        if(finalizadas==tareas_asociadas.size())
-        {
-            finalizada=true;
-        }
-        
-        return finalizada;
+        finalizada=true;
     }
 }

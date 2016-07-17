@@ -53,7 +53,7 @@ public class SprintTest {
     @Test
     public void testHistoriasAsignadas(){   
         
-        ArrayList<HistoriaUsuario> historias=new ArrayList();
+        ArrayList<HistoriaUsuario> historias=new ArrayList<HistoriaUsuario>();
         HistoriaUsuario h1 = new HistoriaUsuario(); 
         historias.add(h1);
         HistoriaUsuario h2 = new HistoriaUsuario(); 
@@ -64,11 +64,12 @@ public class SprintTest {
         historias.add(h4);        
         Sprint sprint=new Sprint(historias);  
         assertEquals(4,sprint.historiasAsignadas());
-    }    
+    }
+    
     @Test
-    public void testHistoriasCompletadas(){   
-        
-        ArrayList<HistoriaUsuario> historias=new ArrayList();
+    public void testHistoriasCompletadas()
+    {   
+        ArrayList<HistoriaUsuario> historias=new ArrayList<HistoriaUsuario>();
         HistoriaUsuario h1 = new HistoriaUsuario(); 
         historias.add(h1);
         h1.finalizar();
@@ -82,10 +83,12 @@ public class SprintTest {
                 
         Sprint sprint=new Sprint(historias);  
         assertEquals(2,sprint.historiasCompletadas());
-    }    
+    }
+    
     @Test
-    public void testHistoriasFaltantes(){     
-        ArrayList<HistoriaUsuario> historias=new ArrayList(); 
+    public void testHistoriasFaltantes()
+    {     
+        ArrayList<HistoriaUsuario> historias=new ArrayList<HistoriaUsuario>(); 
         
         HistoriaUsuario h1 = new HistoriaUsuario();   
         historias.add(h1);
@@ -100,6 +103,7 @@ public class SprintTest {
         Sprint sprint=new Sprint(historias);  
         assertEquals(3,sprint.historiasFaltantes());
     }
+    
     @After
     public void tearDown() {
     } 

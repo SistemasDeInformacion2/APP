@@ -90,7 +90,7 @@ public class TestHistoriaUsuario
         
         hu.finalizarTarea("otro");
         
-        assertEquals(1,hu.pogreso());
+        assertEquals(1,hu.progreso());
         
         hu.finalizarTarea("otro");
         

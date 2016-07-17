@@ -9,6 +9,21 @@ public class ControlHU
         
     }
     
+    public boolean estaAprobada()
+    {
+        return false;
+    }
+    
+    public void rechazar( String descipcion )
+    {
+        
+    }
+    
+    public void aprobar()
+    {
+        
+    }
+    
     public void visitar()
     {
         

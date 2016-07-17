@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import java.time.LocalDateTime;
@@ -10,52 +5,52 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-/**
- *
- * @author USER
- */
-public class Sprint {
-
+public class Sprint 
+{
     private int diaInicio = 0;
     private int mesInicio = 0;
     private int anhoInicio = 0;
     private int diaFin = 0;
     private int mesFin = 0;
     private int anhoFin = 0;
-    private ArrayList<HistoriaUsuario> historiasAsignadas = new ArrayList();
+    private ArrayList<HistoriaUsuario> historiasAsignadas;
     private boolean finalizado;
 
-    Sprint(ArrayList<HistoriaUsuario> historias) {
+    public Sprint(ArrayList<HistoriaUsuario> historias) 
+    {
+        historiasAsignadas = new ArrayList<HistoriaUsuario>();
         historiasAsignadas = historias;
     }
 
-    Sprint() {
-
+    public Sprint() 
+    {
+        historiasAsignadas = new ArrayList<HistoriaUsuario>();
     }
 
-    public int historiasCompletadas() {
-
+    public int historiasCompletadas() 
+    {
         int completadas = 0;
         int cantidad_tareas = historiasAsignadas.size();
 
-        for (int i = 0; i < cantidad_tareas; i++) {
-            if (historiasAsignadas.get(i).estaFinalizada()) {
+        for (int i = 0; i < cantidad_tareas; i++) 
+        {
+            if ( historiasAsignadas.get(i).estaFinalizada() ) 
+            {
                 completadas++;
             }
         }
 
         return completadas;
-
     }
 
-    public int historiasAsignadas() {
-
+    public int historiasAsignadas() 
+    {
         int asignadas = historiasAsignadas.size();
         return asignadas;
     }
 
-    public int tiempoRestante() {
-
+    public int tiempoRestante() 
+    {
         if (anhoFin == LocalDateTime.now().getYear()) {
             if (mesFin == LocalDateTime.now().getMonthValue()) {
                 if (diaFin == LocalDateTime.now().getDayOfMonth()) {
@@ -117,16 +112,18 @@ public class Sprint {
         finalizado = true;
     }
 
-    public int historiasFaltantes() {
-
+    public int historiasFaltantes() 
+    {
         int faltantes = 0;
-        for (int i = 0; i < historiasAsignadas.size(); i++) {
-            if (!historiasAsignadas.get(i).estaFinalizada()) {
+        for (int i = 0; i < historiasAsignadas.size(); i++) 
+        {
+            if ( !historiasAsignadas.get(i).estaFinalizada() ) 
+            {
                 faltantes++;
             }
         }
+        
         return faltantes;
-
     }
 
 }
