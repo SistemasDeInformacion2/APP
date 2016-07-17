@@ -1,6 +1,6 @@
 -- -------------------------------------------------------------------------
 -- PostgreSQL SQL create tables
--- exported at Sun Jul 17 14:27:22 BOT 2016 with easyDesigner
+-- exported at Sun Jul 17 14:50:44 BOT 2016 with easyDesigner
 -- -------------------------------------------------------------------------
 
 -- -------------------------------------------------------------------------
@@ -109,7 +109,7 @@ CREATE TABLE "PERSONA" (
   "NOMBRE" VARCHAR NULL,
   "APELLIDO PATERNO" VARCHAR NULL,
   "APELLIDO MATERNO" VARCHAR NULL,
-  PRIMARY KEY ("ID_PERSONA", "USER_ID_USS")
+  PRIMARY KEY ("ID_PERSONA")
 );
 
 -- -------------------------------------------------------------------------
@@ -122,6 +122,53 @@ CREATE TABLE "SESSION" (
   "FECHA" DATE NULL,
   "ACTIVO" BOOL NULL,
   PRIMARY KEY ("ID_SESSION", "USER_ID_USS")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: ASIGNAR USER_HU
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASIGNAR USER_HU" (
+  "USER_ID_USS" INTEGER NOT NULL,
+  "HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
+  PRIMARY KEY ("USER_ID_USS", "HISTORIA DE USUARIO_ID_HU")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: PAR
+-- -------------------------------------------------------------------------
+CREATE TABLE "PAR" (
+  "ID_PAR" bigserial NOT NULL,
+  "FECHA" DATE NULL,
+  PRIMARY KEY ("ID_PAR")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: ASGINACION PERSONA_PAR
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASGINACION PERSONA_PAR" (
+  "PERSONA_ID_PERSONA" INTEGER NOT NULL,
+  "PAR_ID_PAR" INTEGER NOT NULL,
+  PRIMARY KEY ("PERSONA_ID_PERSONA", "PAR_ID_PAR")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: ASIGNACION PAR_TAREA
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASIGNACION PAR_TAREA" (
+  "PAR_ID_PAR" INTEGER NOT NULL,
+  "TAREA_ID_TAREA" INTEGER NOT NULL,
+  "TAREA_HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
+  PRIMARY KEY ("PAR_ID_PAR", "TAREA_ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HU")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: ASIGNACION TAREA_TEST
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASIGNACION TAREA_TEST" (
+  "TAREA_ID_TAREA" INTEGER NOT NULL,
+  "TAREA_HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
+  "TEST_ID_TEST" INTEGER NOT NULL,
+  PRIMARY KEY ("TAREA_ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HU", "TEST_ID_TEST")
 );
 
 -- -------------------------------------------------------------------------
@@ -181,6 +228,54 @@ ALTER TABLE "PERSONA" ADD FOREIGN KEY ("USER_ID_USS")
 -- -------------------------------------------------------------------------
 ALTER TABLE "SESSION" ADD FOREIGN KEY ("USER_ID_USS") 
     REFERENCES "USER" ("ID_USS")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: ASIGNAR USER_HU
+-- -------------------------------------------------------------------------
+ALTER TABLE "ASIGNAR USER_HU" ADD FOREIGN KEY ("USER_ID_USS") 
+    REFERENCES "USER" ("ID_USS")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "ASIGNAR USER_HU" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
+    REFERENCES "HISTORIA DE USUARIO" ("ID_HU")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: ASGINACION PERSONA_PAR
+-- -------------------------------------------------------------------------
+ALTER TABLE "ASGINACION PERSONA_PAR" ADD FOREIGN KEY ("PERSONA_ID_PERSONA") 
+    REFERENCES "PERSONA" ("ID_PERSONA")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "ASGINACION PERSONA_PAR" ADD FOREIGN KEY ("PAR_ID_PAR") 
+    REFERENCES "PAR" ("ID_PAR")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: ASIGNACION PAR_TAREA
+-- -------------------------------------------------------------------------
+ALTER TABLE "ASIGNACION PAR_TAREA" ADD FOREIGN KEY ("PAR_ID_PAR") 
+    REFERENCES "PAR" ("ID_PAR")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "ASIGNACION PAR_TAREA" ADD FOREIGN KEY ("TAREA_ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HU") 
+    REFERENCES "TAREA" ("ID_TAREA", "HISTORIA DE USUARIO_ID_HU")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: ASIGNACION TAREA_TEST
+-- -------------------------------------------------------------------------
+ALTER TABLE "ASIGNACION TAREA_TEST" ADD FOREIGN KEY ("TAREA_ID_TAREA", "TAREA_HISTORIA DE USUARIO_ID_HU") 
+    REFERENCES "TAREA" ("ID_TAREA", "HISTORIA DE USUARIO_ID_HU")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "ASIGNACION TAREA_TEST" ADD FOREIGN KEY ("TEST_ID_TEST") 
+    REFERENCES "TEST" ("ID_TEST")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 

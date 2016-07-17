@@ -243,6 +243,48 @@
         </ForeignKeys>
         <Indexes />
       </Table>
+      <Table name="ASIGNAR USER_HU">
+        <Columns />
+        <ForeignKeys>
+          <ForeignKey table="USER" column="ID_USS" notNull="true" defaultValue="" index="0" name="USER_ID_USS" />
+          <ForeignKey table="HISTORIA DE USUARIO" column="ID_HU" notNull="true" defaultValue="" index="1" name="HISTORIA DE USUARIO_ID_HU" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="PAR">
+        <Columns>
+          <Column name="ID_PAR" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="FECHA" key="false" dataType="DATE" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="ASGINACION PERSONA_PAR">
+        <Columns />
+        <ForeignKeys>
+          <ForeignKey table="PERSONA" column="ID_PERSONA" notNull="true" defaultValue="" index="0" name="PERSONA_ID_PERSONA" />
+          <ForeignKey table="PAR" column="ID_PAR" notNull="true" defaultValue="" index="1" name="PAR_ID_PAR" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="ASIGNACION PAR_TAREA">
+        <Columns />
+        <ForeignKeys>
+          <ForeignKey table="PAR" column="ID_PAR" notNull="true" defaultValue="" index="0" name="PAR_ID_PAR" />
+          <ForeignKey table="TAREA" column="ID_TAREA" notNull="true" defaultValue="" index="1" name="TAREA_ID_TAREA" />
+          <ForeignKey table="TAREA" column="HISTORIA DE USUARIO_ID_HU" notNull="true" defaultValue="" index="2" name="TAREA_HISTORIA DE USUARIO_ID_HU" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="ASIGNACION TAREA_TEST">
+        <Columns />
+        <ForeignKeys>
+          <ForeignKey table="TAREA" column="ID_TAREA" notNull="true" defaultValue="" index="0" name="TAREA_ID_TAREA" />
+          <ForeignKey table="TAREA" column="HISTORIA DE USUARIO_ID_HU" notNull="true" defaultValue="" index="1" name="TAREA_HISTORIA DE USUARIO_ID_HU" />
+          <ForeignKey table="TEST" column="ID_TEST" notNull="true" defaultValue="" index="2" name="TEST_ID_TEST" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
     </Tables>
     <Relations>
       <Relation name="COMPONE" source="USER" destination="USS_ROL" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
@@ -252,8 +294,16 @@
       <Relation name="COMPONE" source="FUNCION" destination="FUN_VIEW" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
       <Relation name="COMPONE" source="VIEW" destination="FUN_VIEW" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
       <Relation name="DETALLA" source="HISTORIA DE USUARIO" destination="TAREA" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="DETALLA" source="USER" destination="PERSONA" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
       <Relation name="DETALLA" source="USER" destination="SESSION" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="USER" destination="ASIGNAR USER_HU" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="HISTORIA DE USUARIO" destination="ASIGNAR USER_HU" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="PERSONA" destination="ASGINACION PERSONA_PAR" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="PAR" destination="ASGINACION PERSONA_PAR" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="DA CUENTA" source="USER" destination="PERSONA" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="PAR" destination="ASIGNACION PAR_TAREA" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="TAREA" destination="ASIGNACION PAR_TAREA" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="TAREA" destination="ASIGNACION TAREA_TEST" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="TEST" destination="ASIGNACION TAREA_TEST" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
     </Relations>
   </Model>
   <Diagram>
@@ -262,15 +312,20 @@
         <Table table="FUN_VIEW" x="1365" y="406" />
         <Table table="FUNCION" x="1309" y="213" />
         <Table table="VIEW" x="1406" y="551" />
-        <Table table="USER" x="395" y="273" />
         <Table table="ROL_FUNCION" x="1081" y="447" />
         <Table table="ROL" x="859" y="608" />
         <Table table="USS_ROL" x="726" y="310" />
-        <Table table="TAREA" x="1041" y="923" />
-        <Table table="TEST" x="364" y="907" />
-        <Table table="HISTORIA DE USUARIO" x="367" y="721" />
-        <Table table="PERSONA" x="138" y="473" />
-        <Table table="SESSION" x="461" y="497" />
+        <Table table="SESSION" x="141" y="172" />
+        <Table table="USER" x="455" y="343" />
+        <Table table="PERSONA" x="105" y="415" />
+        <Table table="ASGINACION PERSONA_PAR" x="90" y="656" />
+        <Table table="HISTORIA DE USUARIO" x="543" y="788" />
+        <Table table="ASIGNAR USER_HU" x="430" y="582" />
+        <Table table="PAR" x="148" y="926" />
+        <Table table="ASIGNACION PAR_TAREA" x="471" y="944" />
+        <Table table="TAREA" x="1000" y="890" />
+        <Table table="ASIGNACION TAREA_TEST" x="1214" y="687" />
+        <Table table="TEST" x="1506" y="929" />
       </Tables>
       <Relations>
         <Relation source="ROL" destination="USS_ROL" division="0.5" />
@@ -280,8 +335,16 @@
         <Relation source="VIEW" destination="FUN_VIEW" division="0.5081967213114754" />
         <Relation source="USER" destination="USS_ROL" division="0.5" />
         <Relation source="HISTORIA DE USUARIO" destination="TAREA" division="0.5588235294117647" />
-        <Relation source="USER" destination="PERSONA" division="0.6818181818181818" />
-        <Relation source="USER" destination="SESSION" division="0.5" />
+        <Relation source="USER" destination="SESSION" division="0.5357142857142857" />
+        <Relation source="USER" destination="ASIGNAR USER_HU" division="0.5" />
+        <Relation source="HISTORIA DE USUARIO" destination="ASIGNAR USER_HU" division="0.5" />
+        <Relation source="PERSONA" destination="ASGINACION PERSONA_PAR" division="0.5" />
+        <Relation source="PAR" destination="ASGINACION PERSONA_PAR" division="0.5172413793103449" />
+        <Relation source="USER" destination="PERSONA" division="0.5" />
+        <Relation source="PAR" destination="ASIGNACION PAR_TAREA" division="0.5" />
+        <Relation source="TAREA" destination="ASIGNACION PAR_TAREA" division="0.5357142857142857" />
+        <Relation source="TAREA" destination="ASIGNACION TAREA_TEST" division="0.5161290322580645" />
+        <Relation source="TEST" destination="ASIGNACION TAREA_TEST" division="0.5" />
       </Relations>
       <Regions />
     </Shapes>
