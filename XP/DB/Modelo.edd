@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<easyDesigner>
+  <DataTypes default="INTEGER">
+    <DataType name="SMALLINT" group="numeric" description="A small integer. The signed range is -32768 to 32767. The unsigned &#xA;range is 0 to 65535.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+      </Parameters>
+      <Options>
+        <Option name="UNSIGNED" checked="true" />
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="INTEGER" group="numeric" description="A normal-size integer. The signed range is -2147483648 to &#xA;2147483647. The unsigned range is 0 to 4294967295.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+      </Parameters>
+      <Options>
+        <Option name="UNSIGNED" checked="true" />
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="BIGINT" group="numeric" description="A large integer. The signed range is -9223372036854775808 to &#xA;9223372036854775807. The unsigned range is 0 to &#xA;18446744073709551615.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+      </Parameters>
+      <Options>
+        <Option name="UNSIGNED" checked="false" />
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="FLOAT" group="numeric" description="A small (single-precision) floating-point number. Cannot be unsigned. &#xA;Allowable values are -3.402823466E+38 to -1.175494351E-38, 0, and &#xA;1.175494351E-38 to 3.402823466E+38.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+        <Parameter name="decimals" />
+      </Parameters>
+      <Options>
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="DOUBLE" group="numeric" description="A normal-size (double-precision) floating-point number. Cannot be &#xA;unsigned. Allowable values are -1.7976931348623157E+308 to &#xA;-2.2250738585072014E-308, 0, and 2.2250738585072014E-308 to &#xA;1.7976931348623157E+308.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+        <Parameter name="decimals" />
+      </Parameters>
+      <Options>
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="DECIMAL" group="numeric" description="An unpacked floating-point number. Cannot be unsigned. Behaves like &#xA;a CHAR column.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+        <Parameter name="decimals" />
+      </Parameters>
+      <Options>
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="NUMERIC" group="numeric" description="This is a synonym for DECIMAL.">
+      <Parameters paramsRequired="true">
+        <Parameter name="length" />
+        <Parameter name="decimals" />
+      </Parameters>
+      <Options>
+        <Option name="ZEROFILL" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="DATE" group="date_time" description="A date. The supported range is '1000-01-01' to '9999-12-31'.">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="DATETIME" group="date_time" description="A date and time combination. The supported range is '1000-01-01 &#xA;00:00:00' to '9999-12-31 23:59:59'.">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="TIMESTAMP" group="date_time" description="A timestamp. The range is '1970-01-01 00:00:00' to sometime in the &#xA;year 2037. The length can be 14 (or missing), 12, 10, 8, 6, 4, or 2 &#xA;representing YYYYMMDDHHMMSS, ... , YYYYMMDD, ... , YY formats.">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+      </Parameters>
+      <Options />
+    </DataType>
+    <DataType name="TIME" group="date_time" description="A time. The range is '-838:59:59' to '838:59:59'.">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="YEAR" group="date_time" description="A year in 2- or 4-digit format (default is 4-digit).">
+      <Parameters paramsRequired="false">
+        <Parameter name="length" />
+      </Parameters>
+      <Options />
+    </DataType>
+    <DataType name="CHAR" group="string" description="A fixed-length string (1 to 255 characters) that is always right-padded &#xA;with spaces to the specified length when stored. values are sorted and &#xA;compared in case-insensitive fashion according to the default character &#xA;set unless the BINARY keyword is given.">
+      <Parameters paramsRequired="true">
+        <Parameter name="length" />
+      </Parameters>
+      <Options>
+        <Option name="BINARY" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="VARCHAR" group="string" description="A variable-length string (1 to 255 characters). Values are sorted and &#xA;compared in case-sensitive fashion unless the BINARY keyword is &#xA;given.">
+      <Parameters paramsRequired="true">
+        <Parameter name="length" />
+      </Parameters>
+      <Options>
+        <Option name="BINARY" checked="false" />
+      </Options>
+    </DataType>
+    <DataType name="BIT" group="string" description="This is a synonym for CHAR(1).">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="BOOL" group="string" description="This is a synonym for CHAR(1).">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="BLOB" group="blob_text" description="A column maximum length of 65535 (2^16 - 1) characters. Values are &#xA;sorted and compared in case-sensitive fashion.">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="POLYGON" group="geographic" description="Geographic Datatype">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="KOPYTKO" group="user" description="Co mi tu Pan napisał?">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+    <DataType name="VARCHAR(255)" group="user" description="">
+      <Parameters paramsRequired="false" />
+      <Options />
+    </DataType>
+  </DataTypes>
+  <Model>
+    <Tables>
+      <Table name="USER">
+        <Columns>
+          <Column name="ID_USS" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="LOGIN" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+          <Column name="PASSWORD" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="USS_ROL">
+        <Columns />
+        <ForeignKeys>
+          <ForeignKey table="USER" column="ID_USS" notNull="true" defaultValue="" index="0" name="USER_ID_USS" />
+          <ForeignKey table="ROL" column="ID_ROL" notNull="true" defaultValue="" index="1" name="ROL_ID_ROL" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="ROL">
+        <Columns>
+          <Column name="ID_ROL" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="DESCRIPCION" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="ROL_FUNCION">
+        <Columns />
+        <ForeignKeys>
+          <ForeignKey table="ROL" column="ID_ROL" notNull="true" defaultValue="" index="0" name="ROL_ID_ROL" />
+          <ForeignKey table="FUNCION" column="ID_FUN" notNull="true" defaultValue="" index="1" name="FUNCION_ID_FUN" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="FUNCION">
+        <Columns>
+          <Column name="ID_FUN" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="DESCRIPCION" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="FUN_VIEW">
+        <Columns />
+        <ForeignKeys>
+          <ForeignKey table="FUNCION" column="ID_FUN" notNull="true" defaultValue="" index="0" name="FUNCION_ID_FUN" />
+          <ForeignKey table="VIEW" column="ID_VIEW" notNull="true" defaultValue="" index="1" name="VIEW_ID_VIEW" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="VIEW">
+        <Columns>
+          <Column name="ID_VIEW" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="STORAGE" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="HISTORIA DE USUARIO">
+        <Columns>
+          <Column name="ID_HU" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="DESCRIPCION" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="NOMBRE" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
+          <Column name="IMPORTANCIA" key="false" dataType="INTEGER" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="TEST">
+        <Columns>
+          <Column name="ID_TEST" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="NOMBRE" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+          <Column name="DESCRIPCION" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="TAREA">
+        <Columns>
+          <Column name="ID_TAREA" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="NOMBRE" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+          <Column name="DESCRIPCION" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+          <Column name="IMPORTANCIA" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="HISTORIA DE USUARIO" column="ID_HU" notNull="true" defaultValue="" index="1" name="HISTORIA DE USUARIO_ID_HU" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="PERSONA">
+        <Columns>
+          <Column name="ID_PERSONA" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="NOMBRE" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+          <Column name="APELLIDO PATERNO" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+          <Column name="APELLIDO MATERNO" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="USER" column="ID_USS" notNull="true" defaultValue="" index="1" name="USER_ID_USS" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="SESSION">
+        <Columns>
+          <Column name="ID_SESSION" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="PID" key="false" dataType="INTEGER" notNull="false" autoIncrement="false" defaultValue="" />
+          <Column name="FECHA" key="false" dataType="DATE" notNull="false" autoIncrement="false" defaultValue="" />
+          <Column name="ACTIVO" key="false" dataType="BOOL" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys>
+          <ForeignKey table="USER" column="ID_USS" notNull="true" defaultValue="" index="1" name="USER_ID_USS" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+    </Tables>
+    <Relations>
+      <Relation name="COMPONE" source="USER" destination="USS_ROL" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="ROL" destination="USS_ROL" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="ROL" destination="ROL_FUNCION" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="FUNCION" destination="ROL_FUNCION" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="FUNCION" destination="FUN_VIEW" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="VIEW" destination="FUN_VIEW" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="DETALLA" source="HISTORIA DE USUARIO" destination="TAREA" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="DETALLA" source="USER" destination="PERSONA" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="DETALLA" source="USER" destination="SESSION" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+    </Relations>
+  </Model>
+  <Diagram>
+    <Shapes>
+      <Tables>
+        <Table table="FUN_VIEW" x="1365" y="406" />
+        <Table table="FUNCION" x="1309" y="213" />
+        <Table table="VIEW" x="1406" y="551" />
+        <Table table="USER" x="395" y="273" />
+        <Table table="ROL_FUNCION" x="1081" y="447" />
+        <Table table="ROL" x="859" y="608" />
+        <Table table="USS_ROL" x="726" y="310" />
+        <Table table="TAREA" x="1041" y="923" />
+        <Table table="TEST" x="364" y="907" />
+        <Table table="HISTORIA DE USUARIO" x="367" y="721" />
+        <Table table="PERSONA" x="138" y="473" />
+        <Table table="SESSION" x="461" y="497" />
+      </Tables>
+      <Relations>
+        <Relation source="ROL" destination="USS_ROL" division="0.5" />
+        <Relation source="ROL" destination="ROL_FUNCION" division="0.625" />
+        <Relation source="FUNCION" destination="ROL_FUNCION" division="0.5" />
+        <Relation source="FUNCION" destination="FUN_VIEW" division="0.5" />
+        <Relation source="VIEW" destination="FUN_VIEW" division="0.5081967213114754" />
+        <Relation source="USER" destination="USS_ROL" division="0.5" />
+        <Relation source="HISTORIA DE USUARIO" destination="TAREA" division="0.5588235294117647" />
+        <Relation source="USER" destination="PERSONA" division="0.6818181818181818" />
+        <Relation source="USER" destination="SESSION" division="0.5" />
+      </Relations>
+      <Regions />
+    </Shapes>
+  </Diagram>
+  <Viewport zoom="0.56" x="30" y="54" />
+</easyDesigner>
+
