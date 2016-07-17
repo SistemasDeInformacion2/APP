@@ -1,27 +1,100 @@
-package Modelo;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package xp;
 
-public class Tarea 
-{
-    private String tarea;
-    private boolean finalizada;
-    
-    public Tarea (String tarea)
-    {
-        
+/**
+ *
+ * @author USER
+ */
+public class Tarea {
+
+    private String descripcion;
+    private boolean finalizada = false;
+    private boolean asignada = false;
+    private boolean aprobada = false;
+    private boolean rechazada = false;
+    private int importancia = 0;
+
+    public Tarea(String descripcion) {
+
+        this.descripcion = descripcion;
+
     }
-    
-    public Tarea ()
-    {
-        
+
+    public Tarea() {
+
     }
-    
-    public void finalizada()
-    {
-        finalizada=true;
+
+    public boolean aprobada() {
+
+        return aprobada;
+
     }
-    
-    public boolean esta_finalizada()
-    {
+
+    public void finalizar() {
+        finalizada = true;
+    }
+
+    public boolean esta_finalizada() {
         return finalizada;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String prueba_de_Tarea) {
+        descripcion = prueba_de_Tarea;
+    }
+
+    public void setImportancia(int importancia) {
+
+        this.importancia = importancia;
+
+    }
+
+    public int getImportancia() {
+
+        return importancia;
+
+    }
+
+    public boolean estaAsignada() {
+        return asignada;
+    }
+
+    public void asignar() {
+
+        asignada = true;
+
+    }
+
+    public boolean estaFinalizada() {
+        return finalizada;
+    }
+
+    public boolean estaRechazada() {
+
+        return rechazada;
+
+    }
+
+    public void rechazar() {
+
+        rechazada = true;
+
+    }
+
+    public boolean estaAprobada() {
+        return aprobada;
+    }
+
+    public void aprobar() {
+
+        aprobada = true;
+    }
+
 }
