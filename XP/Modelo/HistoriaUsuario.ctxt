@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=
+comment0.target=HistoriaUsuario()
+comment1.params=
+comment1.target=java.lang.String\ getDescripcion()
+comment10.params=
+comment10.target=boolean\ estaFinalizada()
+comment2.params=descripcion
+comment2.target=void\ setDescripcion(java.lang.String)
+comment3.params=t
+comment3.target=void\ asociarTarea(Tarea)
+comment4.params=
+comment4.target=int\ cantidadTareas()
+comment5.params=importancia
+comment5.target=void\ setImportancia(int)
+comment6.params=
+comment6.target=int\ getImportancia()
+comment7.params=
+comment7.target=boolean\ estaAsignada()
+comment8.params=
+comment8.target=void\ asignar()
+comment9.params=pocision_tarea
+comment9.target=void\ finalizarTarea(int)
+numComments=11

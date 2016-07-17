@@ -1,30 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
-/**
- *
- * @author USER
- */
-public class Tarea {
-    
+public class Tarea 
+{
     private String tarea;
-    private boolean finalizada=false;
+    private boolean finalizada;
     
-    
-    public Tarea (String tarea){
-        
+    public Tarea (String tarea)
+    {
         this.tarea=tarea;
-        
+        finalizada=false;
     }
     
-    public void finalizada(){
+    public void finalizada()
+    {
         finalizada=true;
     }
-    public boolean esta_finalizada(){
+    
+    public boolean esta_finalizada()
+    {
         return finalizada;
     }
 }

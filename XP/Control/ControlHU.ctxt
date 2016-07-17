@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ControlHU()
+comment1.params=
+comment1.target=void\ visitar()
+comment2.params=
+comment2.target=int\ progreso()
+comment3.params=
+comment3.target=int\ expectedVisited()
+comment4.params=
+comment4.target=boolean\ full()
+numComments=5

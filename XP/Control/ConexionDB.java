@@ -1,10 +1,6 @@
 package Control;
 
-
- 
-
 import java.sql.SQLException;
-
 
 public class ConexionDB {
     

@@ -2,11 +2,13 @@ package Control;
 
 import java.util.*;
 import java.sql.*;
+
 public class PuenteDBLogin extends PuenteDB
 {
     public PuenteDBLogin() throws Exception{
         super();
     }
+    
     public boolean comprobarCuenta( String username, String password )
     {
         boolean success = false;
@@ -33,7 +35,9 @@ public class PuenteDBLogin extends PuenteDB
         
         return success;
     }
-    public ArrayList<String> adquirirPermisos(String no){
+    
+    public ArrayList<String> adquirirPermisos(String no)
+    {
         ArrayList<String> res=new ArrayList<String>();
         try{
             String query;
@@ -57,7 +61,9 @@ public class PuenteDBLogin extends PuenteDB
         }
         return res;
     }
-    public void nuevaSession(String no){
+    
+    public void nuevaSession(String no)
+    {
         try{
             String query;
             query = "SELECT buscarIDUser(?);";
@@ -77,7 +83,9 @@ public class PuenteDBLogin extends PuenteDB
             System.out.println(e);
         }
     }
-    public void logout(){
+    
+    public void logout()
+    {
         try{
             String query;
             query = "SELECT logout();";
