@@ -329,6 +329,7 @@ public class HomeGUI extends javax.swing.JFrame
         );
 
         pack();
+                sprint.setVisible(false);
     }                      
 
     private void anadirHistoria(java.awt.event.ActionEvent evt) 

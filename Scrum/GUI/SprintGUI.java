@@ -234,7 +234,7 @@ public class SprintGUI extends javax.swing.JFrame
     }                                                
 
     private void valorComplejidadActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        // TODO add your handling code here:
+        // TODO add your handling code here;
     }                                                
 
     // Variables declaration - do not modify
