@@ -2,7 +2,9 @@
 comment0.params=tarea
 comment0.target=Tarea(java.lang.String)
 comment1.params=
-comment1.target=void\ finalizada()
+comment1.target=Tarea()
 comment2.params=
-comment2.target=boolean\ esta_finalizada()
-numComments=3
+comment2.target=void\ finalizada()
+comment3.params=
+comment3.target=boolean\ esta_finalizada()
+numComments=4

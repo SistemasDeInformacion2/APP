@@ -7,8 +7,12 @@ public class Tarea
     
     public Tarea (String tarea)
     {
-        this.tarea=tarea;
-        finalizada=false;
+        
+    }
+    
+    public Tarea ()
+    {
+        
     }
     
     public void finalizada()
