@@ -1,6 +1,6 @@
 -- -------------------------------------------------------------------------
 -- PostgreSQL SQL create tables
--- exported at Sun Jul 17 15:02:11 BOT 2016 with easyDesigner
+-- exported at Sun Jul 17 15:09:39 BOT 2016 with easyDesigner
 -- -------------------------------------------------------------------------
 
 -- -------------------------------------------------------------------------
@@ -175,6 +175,16 @@ CREATE TABLE "ASIGNACION PERSONA_PAR" (
 );
 
 -- -------------------------------------------------------------------------
+-- Table: ESTADO HISTORIA DE USUARIO
+-- -------------------------------------------------------------------------
+CREATE TABLE "ESTADO HISTORIA DE USUARIO" (
+  "ID_ESTADO" bigserial NOT NULL,
+  "HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
+  "DESCRIPCION" VARCHAR NULL,
+  PRIMARY KEY ("ID_ESTADO")
+);
+
+-- -------------------------------------------------------------------------
 -- Relations for table: USS_ROL
 -- -------------------------------------------------------------------------
 ALTER TABLE "USS_ROL" ADD FOREIGN KEY ("USER_ID_USS") 
@@ -283,6 +293,14 @@ ALTER TABLE "ASIGNACION PERSONA_PAR" ADD FOREIGN KEY ("PAR_ID_PAR")
       ON UPDATE NO ACTION;
 ALTER TABLE "ASIGNACION PERSONA_PAR" ADD FOREIGN KEY ("PERSONA_ID_PERSONA") 
     REFERENCES "PERSONA" ("ID_PERSONA")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: ESTADO HISTORIA DE USUARIO
+-- -------------------------------------------------------------------------
+ALTER TABLE "ESTADO HISTORIA DE USUARIO" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
+    REFERENCES "HISTORIA DE USUARIO" ("ID_HU")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
