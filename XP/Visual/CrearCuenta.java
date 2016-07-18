@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+package Visual;
 
-import control.ValidarCrearCuenta;
+import Control.ValidarCrearCuenta;
 import javax.swing.JOptionPane;
 
 /**
