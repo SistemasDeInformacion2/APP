@@ -23,7 +23,8 @@ public class Tarea extends javax.swing.JFrame {
         this.tarea=tarea;
         initComponents();
         drawTermometro(termometros.getGraphics());
-        
+        descripcion.setText(tarea.getDescripcion());
+        importancia.setText(Integer.toString(tarea.getImportancia()));
     }
 
     /**
