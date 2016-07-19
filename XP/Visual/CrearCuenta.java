@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Visual;
+package visual;
 
-import Control.ValidarCrearCuenta;
+import control.PuenteDBNuevaCuenta;
+import control.ValidarCrearCuenta;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,18 +27,11 @@ public class CrearCuenta extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        
-        /**
-        valNombre.setVisible(false);
-        valApellido.setVisible(false);
-        
-        valCorreo.setVisible(false);
-        valCelular.setVisible(false);
-        valUsuario.setVisible(false);
-        valContrasena.setVisible(false);
-        valConfContrasena.setVisible(false);
-        */
-        
+        try {
+            conexion = new PuenteDBNuevaCuenta();
+        } catch (Exception ex) {
+            Logger.getLogger(CrearCuenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -269,6 +265,8 @@ botOk.addActionListener(new java.awt.event.ActionListener() {
     private void botOkActionPerformed(java.awt.event.ActionEvent evt) {                                      
         validarCuenta = new ValidarCrearCuenta(this);
         if(validarCuenta.getCamposRequeridos()==0){
+            conexion.registrarUser(getTxtUsuario(),getTxtContrasena());
+            conexion.registrarPersona(getTxtNombre(),getTxtApellido(),getFechaNacimiento(),getTxtCorreo(),getTxtCelular());
             JOptionPane.showMessageDialog(null, "Sus datos se han guardado satisfactoriamente","Registro Completado", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }
@@ -307,6 +305,7 @@ botOk.addActionListener(new java.awt.event.ActionListener() {
     // End of variables declaration                   
     private Principal principal;
     private ValidarCrearCuenta validarCuenta;
+    private PuenteDBNuevaCuenta conexion;
     
     public String getTxtApellido() {
         return txtApellido.getText();
