@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package control;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,38 +46,32 @@ public class PuenteDBNuevaCuenta extends PuenteDB{
     }
 
     public void registrarUser(String login, String password){
-        String query = "INSERT INTO \"USER\"(\"LOGIN\", \"PASSWORD\") VALUES ('"+login+"','"+password+"')";
+        String queryU = "INSERT INTO \"USER\"(\"LOGIN\", \"PASSWORD\") VALUES ('"+login+"','"+password+"')";
         
         try{
-            Statement st = connection.createStatement();
-            st.executeUpdate(query);
+            Statement stU = connection.createStatement();
+            stU.executeUpdate(queryU);
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex, "Error de conexion", JOptionPane.ERROR_MESSAGE);
         }
-        finally{
-            try {
-                connection.close();
-            } catch (SQLException ex2) {
-                JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+//        finally{
+//            try {
+//                connection.close();
+//            } catch (SQLException ex2) {
+//                JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
     }
     
     public void registrarPersona(String nombres, String apellidos, String fechaNacimiento, String correo, String celular){
-        String consulta = "SELECT MAX(\"ID_USS\") FROM \"USER\"";
+        String queryP = "INSERT INTO \"PERSONA\"(\"USER_ID_USS\",\"NOMBRES\", \"APELLIDOS\","+
+                                                    "\"FECHA_NAC\",\"CORREO\",\"CELULAR\") " +
+                            "VALUES ((SELECT MAX(\"ID_USS\") FROM \"USER\"),'"+nombres+"','"+
+                                        apellidos+"','"+fechaNacimiento+"','"+correo+"','"+celular+"')";
                 
         try{
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery(consulta);
-            
-            
-            if(rs.next()){
-                String query = "INSERT INTO \"PERSONA\"(\"USER_ID_USS\", \"NOMBRES\", \"APELLIDOS\", \"FECHA_NAC\",\"CORREO\","
-                + "\"CELULAR\") VALUES ('"+rs.getRowId(0).toString()+"','"+nombres+"','"+apellidos+"','"+fechaNacimiento
-                +"','"+correo+"','"+celular+"')";
-                
-                st.executeUpdate(query);
-            }
+            Statement stP = connection.createStatement();
+            stP.executeUpdate(queryP);
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex, "Error de conexion", JOptionPane.ERROR_MESSAGE);
         }
