@@ -1,6 +1,6 @@
 package Scrum.GUI;
 
-import control.*;
+import Scrum.control.*;
 import java.util.*;
 
 public class Ventana_Proyecto extends javax.swing.JFrame 

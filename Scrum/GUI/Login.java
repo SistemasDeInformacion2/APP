@@ -3,7 +3,7 @@ package Scrum.GUI;
 import java.sql.*;
 import java.util.*;
 import javax.swing.*;
-import control.*;
+import Scrum.control.*;
 
 public class Login extends javax.swing.JFrame 
 {

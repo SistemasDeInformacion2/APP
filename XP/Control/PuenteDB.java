@@ -7,9 +7,9 @@ import java.util.*;
 public class PuenteDB 
 {
     private String driver = "org.postgresql.Driver";
-    private String url = "jdbc:postgresql://localhost:5433/SIS2";
+    private String url = "jdbc:postgresql://10.0.0.27:5432/Sis2";
     private String username = "postgres";
-    private String pass = "123db";
+    private String pass = "admin";
     protected Connection connection;
     
     public PuenteDB()throws SQLException, ClassNotFoundException

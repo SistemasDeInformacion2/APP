@@ -3,7 +3,7 @@ package Scrum.GUI;
 import java.awt.Choice;
 import java.sql.*;
 import java.util.*;
-import control.*;
+import Scrum.control.*;
 
 public class Nuevo_Sprint_GUI extends javax.swing.JFrame 
 {

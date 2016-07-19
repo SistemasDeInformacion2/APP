@@ -1,10 +1,10 @@
-package Modelo.Tests;
+package XP.Modelo.Tests;
 import static org.junit.Assert.*;
 import org.junit.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import Modelo.*;
+import XP.Modelo.*;
 
 public class TestHistoriaUsuario
 {

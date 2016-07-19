@@ -1,6 +1,6 @@
 package Scrum.GUI;
 
-import control.*;
+import Scrum.control.*;
 
 public class addHistoryGUI extends javax.swing.JFrame 
 {

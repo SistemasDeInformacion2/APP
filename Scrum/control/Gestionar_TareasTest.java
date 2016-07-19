@@ -24,7 +24,7 @@ public class Gestionar_TareasTest
     @Test
     public void addTarea()
     {
-        control.Gestionar_Tareas gestiona1 = new control.Gestionar_Tareas();
+        Gestionar_Tareas gestiona1 = new Gestionar_Tareas();
         assertEquals(true, gestiona1.subir_Tareas(1, 1, "hola", 2));
     }
 }

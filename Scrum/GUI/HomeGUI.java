@@ -3,7 +3,7 @@ package Scrum.GUI;
 import javax.swing.GroupLayout.*;
 import javax.swing.*;
 import java.util.*;
-import control.*;
+import Scrum.control.*;
 
 public class HomeGUI extends javax.swing.JFrame 
 {

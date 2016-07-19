@@ -4,7 +4,7 @@ import java.sql.*;
 import java.text.*;
 import java.util.*;
 import javax.swing.*;
-import control.*;
+import Scrum.control.*;
 
 public class CrearCuenta extends javax.swing.JFrame 
 {

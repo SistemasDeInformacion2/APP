@@ -12,7 +12,7 @@ public class Sprint
     private int anhoInicio = 0;
     private int diaFin = 0;
     private int mesFin = 0;
-    private String titulo,descripcion;
+    private String titulo, descripcion;
     private int id;
     private int anhoFin = 0;
     private ArrayList<HistoriaUsuario> historiasAsignadas;
@@ -146,5 +146,19 @@ public class Sprint
        
        return fechaFin;
    }
-
+   
+   public String getTitulo()
+   {
+       return titulo;
+   }
+   
+   public String getDescripcion()
+   {
+       return descripcion;
+   }
+   
+   public int getId()
+   {
+       return id;
+   }
 }

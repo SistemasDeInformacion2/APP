@@ -2,7 +2,7 @@ package Scrum.GUI;
 
 import java.util.*;
 import javax.swing.*;
-import control.*;
+import Scrum.control.*;
 
 public class Registrar_Proyecto extends javax.swing.JFrame 
 {        
