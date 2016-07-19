@@ -1,4 +1,4 @@
-package GUI;
+package Scrum.GUI;
 
 public class Usuario extends javax.swing.JFrame {
 

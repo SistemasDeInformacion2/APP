@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Visual;
+package XP.Visual;
 
 /**
  *
@@ -109,11 +109,13 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void botonNuevaCuentaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        new CrearCuenta(this);
+        new CrearCuenta();
+        this.dispose();
     }                                                
 
     private void botonIngresoActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        new Login(this);
+        new Login();
+        this.dispose();
     }                                            
 
 

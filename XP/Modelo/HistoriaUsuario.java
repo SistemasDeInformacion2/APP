@@ -1,7 +1,7 @@
-package Modelo;
+package XP.Modelo;
 
 import java.util.ArrayList;
-import Control.*;
+import XP.Control.*;
 
 public class HistoriaUsuario 
 {

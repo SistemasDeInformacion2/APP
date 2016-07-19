@@ -1,4 +1,4 @@
-package GUI;
+package Scrum.GUI;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.*;

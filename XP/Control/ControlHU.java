@@ -1,6 +1,6 @@
-package Control;
+package XP.Control;
 
-import Modelo.*;
+import XP.Modelo.*;
 
 public class ControlHU
 {
@@ -21,6 +21,7 @@ public class ControlHU
         }
         
         this.id_hu = id_hu;
+        historia_usuario=initHistoria();
     }
     
     public ControlHU( HistoriaUsuario historia_usuario )
@@ -45,6 +46,11 @@ public class ControlHU
     }
     
     public HistoriaUsuario getHistoria()
+    {
+        return historia_usuario;
+    }
+    
+    public HistoriaUsuario initHistoria()
     {
         String descripcion = puenteHU.getDescripcion( id_hu );
         String nombre = puenteHU.getNombre( id_hu );

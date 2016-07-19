@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */       //descripcion.setText("Descripción"+tarea.getDescripcion());
       //importancia.setText("Importancia"+tarea.getImportancia());
-package Visual;
-import Modelo.Tarea;
+package XP.Visual;
+import XP.Modelo.Tarea;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -24,6 +24,7 @@ public class TareaInterfaz extends javax.swing.JFrame {
      */
     private Tarea tarea;
     private int value;
+    
     
     public TareaInterfaz(Tarea tarea)  {        
         this.tarea=tarea;

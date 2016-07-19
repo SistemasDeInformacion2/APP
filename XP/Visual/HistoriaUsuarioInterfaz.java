@@ -1,5 +1,5 @@
-package Visual;
-import Modelo.HistoriaUsuario;
+package XP.Visual;
+import XP.Modelo.HistoriaUsuario;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -12,15 +12,16 @@ public class HistoriaUsuarioInterfaz extends javax.swing.JFrame {
     private HistoriaUsuario hu;
     private int value;
     
-    public HistoriaUsuarioInterfaz(HistoriaUsuario hu)  {        
-        this.hu=hu;
+    public HistoriaUsuarioInterfaz(/*HistoriaUsuario hu*/)  {        
+        //this.hu=hu;
         initComponents();         
         barraProgreso.setValue(value);        
         //barraProgreso.setStringPainted(true);
         barraProgreso.setBackground(Color.WHITE);
         barraProgreso.setForeground(Color.YELLOW);        
-        descripcion.setText(hu.getDescripcion());
-        importancia.setText(Integer.toString(hu.getImportancia()));
+        setVisible(true);
+        //descripcion.setText(hu.getDescripcion());
+        //importancia.setText(Integer.toString(hu.getImportancia()));
     }
     
     /**
@@ -130,13 +131,13 @@ public class HistoriaUsuarioInterfaz extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void boton_aceptadoActionPerformed(java.awt.event.ActionEvent evt) {  
-        hu.aprobar();
+        /*hu.aprobar();
         if(!hu.estaRechazada()){
             value+=20;        
             if(value>60)
                 barraProgreso.setForeground(Color.GREEN);
             barraProgreso.setValue(value); 
-        }
+        }*/
     }                                              
 
     private void boton_rechazadoActionPerformed(java.awt.event.ActionEvent evt) { 

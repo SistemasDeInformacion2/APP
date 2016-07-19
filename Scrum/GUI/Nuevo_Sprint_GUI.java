@@ -1,4 +1,4 @@
-package GUI;
+package Scrum.GUI;
 
 import java.awt.Choice;
 import java.sql.*;

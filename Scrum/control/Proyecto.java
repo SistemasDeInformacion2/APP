@@ -1,4 +1,4 @@
-package control;
+package Scrum.control;
 
 public class Proyecto
 {

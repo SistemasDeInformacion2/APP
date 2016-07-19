@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.params=nueva
-comment0.target=ValidarCrearCuenta(Visual.CrearCuenta)
+comment0.target=ValidarCrearCuenta(XP.Visual.CrearCuenta)
 comment1.params=
 comment1.target=void\ validarNombre()
 comment10.params=

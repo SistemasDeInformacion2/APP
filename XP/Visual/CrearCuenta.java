@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Visual;
+package XP.Visual;
 
-import Control.PuenteDBNuevaCuenta;
-import Control.ValidarCrearCuenta;
+import XP.Control.PuenteDBNuevaCuenta;
+import XP.Control.ValidarCrearCuenta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,9 +20,8 @@ public class CrearCuenta extends javax.swing.JFrame {
     /**
      * Creates new form CrearCuenta
      */
-    public CrearCuenta(Principal prpal) {
+    public CrearCuenta() {
         initComponents();
-        principal = prpal;
         this.setTitle("Nueva cuenta");
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -260,6 +259,7 @@ botOk.addActionListener(new java.awt.event.ActionListener() {
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.dispose();
+        new Principal();
     }                                          
 
     private void botOkActionPerformed(java.awt.event.ActionEvent evt) {                                      
@@ -269,6 +269,7 @@ botOk.addActionListener(new java.awt.event.ActionListener() {
             conexion.registrarPersona(getTxtNombre(),getTxtApellido(),getFechaNacimiento(),getTxtCorreo(),getTxtCelular());
             JOptionPane.showMessageDialog(null, "Sus datos se han guardado satisfactoriamente","Registro Completado", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
+            new Principal();
         }
     }                                     
     

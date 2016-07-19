@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Visual;
+package XP.Visual;
 
-import Control.PuenteDBLogin;
-import Control.PuenteDBNuevaCuenta;
+import XP.Control.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
@@ -24,17 +23,14 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public Login(Principal prpal) {
+    public Login() {
         initComponents();
-        cerrar();
-        principal = prpal;
-        prpal.setVisible(false);
         this.setTitle("LOGIN");
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         try {
-            conexion = new PuenteDBLogin();
+            conexion = ConexionDB.pedirPuenteLogin();
         } catch (Exception ex) {
             Logger.getLogger(CrearCuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -128,7 +124,7 @@ public class Login extends javax.swing.JFrame {
         if(conexion.comprobarCuenta(getTxtUsuario(), getTxtContrasena())){
             this.dispose();
             JOptionPane.showMessageDialog(null, "Bienvenid@ " + getTxtUsuario() + "\nHas ingresado satisfactoriamente", "Mensaje de Bienvenida", JOptionPane.INFORMATION_MESSAGE);
-            new SeleccionarProyecto(principal);
+            new SeleccionarProyecto();
         }else{
             JOptionPane.showMessageDialog(null, "Acceso denegado\nUsuario o Contraseña Incorrectos", "Acceso denegado",JOptionPane.ERROR_MESSAGE);
         }
@@ -149,19 +145,6 @@ public class Login extends javax.swing.JFrame {
     // End of variables declaration                   
     private Principal principal;
     private PuenteDBLogin conexion;
-    
-    public void cerrar(){
-        try{
-            this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-            addWindowListener(new WindowAdapter(){
-                public void windowClosing(WindowEvent e){
-                    principal.setVisible(true);
-                }
-            });
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
     
     public String getTxtUsuario() {
         return txtUsuario.getText();

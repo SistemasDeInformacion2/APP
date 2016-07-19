@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=prpal
-comment0.target=CrearCuenta(Principal)
+comment0.params=
+comment0.target=CrearCuenta()
 comment0.text=\n\ Creates\ new\ form\ CrearCuenta\n
 comment1.params=
 comment1.target=void\ initComponents()

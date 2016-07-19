@@ -1,14 +1,14 @@
-package control;
+package Scrum.control;
 
 import java.sql.*;
 
 public class ConexionDB
 {
     private String driver = "org.postgresql.Driver";
-    private String url = "jdbc:postgresql://localhost/DBsis";
+    private String url = "jdbc:postgresql://localhost:5433/DBSis";
     private String username = "postgres";
-    private String pass = "admin";
-    private Connection connection;
+    private String pass = "123db";
+    protected Connection connection;
     
     public ConexionDB()
     {

@@ -1,4 +1,4 @@
-package Modelo;
+package XP.Modelo;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -12,10 +12,18 @@ public class Sprint
     private int anhoInicio = 0;
     private int diaFin = 0;
     private int mesFin = 0;
+    private String titulo,descripcion;
+    private int id;
     private int anhoFin = 0;
     private ArrayList<HistoriaUsuario> historiasAsignadas;
     private boolean finalizado;
-
+    
+    public Sprint(String tit,String des,int iden) 
+    {
+        titulo=tit;
+        descripcion=des;
+        id=iden;
+    }
     public Sprint(ArrayList<HistoriaUsuario> historias) 
     {
         historiasAsignadas = new ArrayList<HistoriaUsuario>();
@@ -125,5 +133,18 @@ public class Sprint
         
         return faltantes;
     }
+    
+    
+   public String getFechaInicio(){
+       String fechaInicio=diaInicio+" de "+ mesInicio + " del " + anhoInicio;
+       
+       return fechaInicio;
+   }
+   
+   public String getFechaFin(){
+       String fechaFin=diaFin+" de "+ mesFin + " del " + anhoFin;
+       
+       return fechaFin;
+   }
 
 }

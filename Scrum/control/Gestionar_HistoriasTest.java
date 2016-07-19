@@ -1,4 +1,4 @@
-package control;
+package Scrum.control;
 
 import static org.junit.Assert.*;
 import org.junit.After;

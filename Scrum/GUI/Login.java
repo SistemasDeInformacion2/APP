@@ -1,4 +1,4 @@
-package GUI;
+package Scrum.GUI;
 
 import java.sql.*;
 import java.util.*;
@@ -14,7 +14,6 @@ public class Login extends javax.swing.JFrame
         initComponents();     
         this.setTitle("");
         this.setVisible(true);
-        
         this.ventanaPrincipal = ventanaPrincipal;
     }
     

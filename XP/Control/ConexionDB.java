@@ -1,17 +1,16 @@
-package Control;
+package XP.Control;
 
 import java.sql.SQLException;
-
+import java.util.*;
 public class ConexionDB {
+    private static PuenteDBLogin login;
     
-    private static PuenteDB connection;
-    
-    public static PuenteDB conexion() throws SQLException, ClassNotFoundException{
+    public static PuenteDBLogin pedirPuenteLogin() throws Exception{
         
-        if(connection==null){
-            connection=new PuenteDB();
+        if(login==null){
+            login=new PuenteDBLogin();
         }
-        return connection;
+        return login;
             
     }
 }

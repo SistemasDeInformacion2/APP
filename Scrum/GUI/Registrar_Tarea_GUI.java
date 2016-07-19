@@ -1,4 +1,4 @@
-package GUI;
+package Scrum.GUI;
 
 public class Registrar_Tarea_GUI extends javax.swing.JFrame 
 {

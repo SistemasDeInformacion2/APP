@@ -1,4 +1,4 @@
-package GUI;
+package Scrum.GUI;
 
 import java.sql.*;
 import java.text.*;

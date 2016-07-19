@@ -1,5 +1,6 @@
+package XP;
 public class Main{
-    public static void main(String[] args){
-        new Visual.Principal();
+    public Main(){
+        new XP.Visual.Principal();
     }
 }

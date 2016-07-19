@@ -1,4 +1,4 @@
-package GUI;
+package Scrum.GUI;
 
 import java.util.*;
 import javax.swing.*;

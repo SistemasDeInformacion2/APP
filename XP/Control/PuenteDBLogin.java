@@ -1,4 +1,4 @@
-package Control;
+package XP.Control;
 
 import java.util.*;
 import java.sql.*;
