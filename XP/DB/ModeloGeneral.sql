@@ -1,6 +1,6 @@
 -- -------------------------------------------------------------------------
 -- PostgreSQL SQL create tables
--- exported at Sun Jul 17 15:09:39 BOT 2016 with easyDesigner
+-- exported at Mon Jul 18 20:19:53 BOT 2016 with easyDesigner
 -- -------------------------------------------------------------------------
 
 -- -------------------------------------------------------------------------
@@ -72,6 +72,7 @@ CREATE TABLE "VIEW" (
 -- -------------------------------------------------------------------------
 CREATE TABLE "HISTORIA DE USUARIO" (
   "ID_HU" bigserial NOT NULL,
+  "ESTADO HISTORIA DE USUARIO_ID_ESTADO" INTEGER NOT NULL,
   "DESCRIPCION" VARCHAR NOT NULL,
   "NOMBRE" VARCHAR NOT NULL,
   "IMPORTANCIA" INTEGER NULL,
@@ -179,9 +180,46 @@ CREATE TABLE "ASIGNACION PERSONA_PAR" (
 -- -------------------------------------------------------------------------
 CREATE TABLE "ESTADO HISTORIA DE USUARIO" (
   "ID_ESTADO" bigserial NOT NULL,
-  "HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
   "DESCRIPCION" VARCHAR NULL,
   PRIMARY KEY ("ID_ESTADO")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: PROYECTO
+-- -------------------------------------------------------------------------
+CREATE TABLE "PROYECTO" (
+  "ID_PROYECTO" bigserial NOT NULL,
+  "DESCRIPCION" VARCHAR NULL,
+  "TITULO" VARCHAR NULL,
+  PRIMARY KEY ("ID_PROYECTO")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: ASIGNACION EQUIPO_PROYECTO
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASIGNACION EQUIPO_PROYECTO" (
+  "EQUIPO_ID_EQUIPO" INTEGER NOT NULL,
+  "PROYECTO_ID_PROYECTO" INTEGER NOT NULL,
+  PRIMARY KEY ("EQUIPO_ID_EQUIPO", "PROYECTO_ID_PROYECTO")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: ASIGNACION PROYECTO_HU
+-- -------------------------------------------------------------------------
+CREATE TABLE "ASIGNACION PROYECTO_HU" (
+  "PROYECTO_ID_PROYECTO" INTEGER NOT NULL,
+  "HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
+  PRIMARY KEY ("PROYECTO_ID_PROYECTO", "HISTORIA DE USUARIO_ID_HU")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: TAREA
+-- -------------------------------------------------------------------------
+CREATE TABLE "TAREA" (
+  "ID_TAREA" bigserial NOT NULL,
+  "HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
+  "DESCRIPCION" VARCHAR NULL,
+  PRIMARY KEY ("ID_TAREA", "HISTORIA DE USUARIO_ID_HU")
 );
 
 -- -------------------------------------------------------------------------
@@ -217,6 +255,14 @@ ALTER TABLE "FUN_VIEW" ADD FOREIGN KEY ("FUNCION_ID_FUN")
       ON UPDATE NO ACTION;
 ALTER TABLE "FUN_VIEW" ADD FOREIGN KEY ("VIEW_ID_VIEW") 
     REFERENCES "VIEW" ("ID_VIEW")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: HISTORIA DE USUARIO
+-- -------------------------------------------------------------------------
+ALTER TABLE "HISTORIA DE USUARIO" ADD FOREIGN KEY ("ESTADO HISTORIA DE USUARIO_ID_ESTADO") 
+    REFERENCES "ESTADO HISTORIA DE USUARIO" ("ID_ESTADO")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
@@ -297,9 +343,33 @@ ALTER TABLE "ASIGNACION PERSONA_PAR" ADD FOREIGN KEY ("PERSONA_ID_PERSONA")
       ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
--- Relations for table: ESTADO HISTORIA DE USUARIO
+-- Relations for table: ASIGNACION EQUIPO_PROYECTO
 -- -------------------------------------------------------------------------
-ALTER TABLE "ESTADO HISTORIA DE USUARIO" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
+ALTER TABLE "ASIGNACION EQUIPO_PROYECTO" ADD FOREIGN KEY ("EQUIPO_ID_EQUIPO") 
+    REFERENCES "EQUIPO" ("ID_EQUIPO")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "ASIGNACION EQUIPO_PROYECTO" ADD FOREIGN KEY ("PROYECTO_ID_PROYECTO") 
+    REFERENCES "PROYECTO" ("ID_PROYECTO")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: ASIGNACION PROYECTO_HU
+-- -------------------------------------------------------------------------
+ALTER TABLE "ASIGNACION PROYECTO_HU" ADD FOREIGN KEY ("PROYECTO_ID_PROYECTO") 
+    REFERENCES "PROYECTO" ("ID_PROYECTO")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "ASIGNACION PROYECTO_HU" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
+    REFERENCES "HISTORIA DE USUARIO" ("ID_HU")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+-- -------------------------------------------------------------------------
+-- Relations for table: TAREA
+-- -------------------------------------------------------------------------
+ALTER TABLE "TAREA" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
     REFERENCES "HISTORIA DE USUARIO" ("ID_HU")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;

@@ -195,7 +195,9 @@
           <Column name="NOMBRE" key="false" dataType="VARCHAR" notNull="true" autoIncrement="false" defaultValue="" />
           <Column name="IMPORTANCIA" key="false" dataType="INTEGER" notNull="false" autoIncrement="false" defaultValue="" />
         </Columns>
-        <ForeignKeys />
+        <ForeignKeys>
+          <ForeignKey table="ESTADO HISTORIA DE USUARIO" column="ID_ESTADO" notNull="true" defaultValue="" index="1" name="ESTADO HISTORIA DE USUARIO_ID_ESTADO" />
+        </ForeignKeys>
         <Indexes />
       </Table>
       <Table name="TEST">
@@ -291,6 +293,39 @@
           <Column name="ID_ESTADO" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
           <Column name="DESCRIPCION" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
         </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="PROYECTO">
+        <Columns>
+          <Column name="ID_PROYECTO" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="DESCRIPCION" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+          <Column name="TITULO" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
+        <ForeignKeys />
+        <Indexes />
+      </Table>
+      <Table name="ASIGNACION EQUIPO_PROYECTO">
+        <Columns />
+        <ForeignKeys>
+          <ForeignKey table="EQUIPO" column="ID_EQUIPO" notNull="true" defaultValue="" index="0" name="EQUIPO_ID_EQUIPO" />
+          <ForeignKey table="PROYECTO" column="ID_PROYECTO" notNull="true" defaultValue="" index="1" name="PROYECTO_ID_PROYECTO" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="ASIGNACION PROYECTO_HU">
+        <Columns />
+        <ForeignKeys>
+          <ForeignKey table="PROYECTO" column="ID_PROYECTO" notNull="true" defaultValue="" index="0" name="PROYECTO_ID_PROYECTO" />
+          <ForeignKey table="HISTORIA DE USUARIO" column="ID_HU" notNull="true" defaultValue="" index="1" name="HISTORIA DE USUARIO_ID_HU" />
+        </ForeignKeys>
+        <Indexes />
+      </Table>
+      <Table name="TAREA">
+        <Columns>
+          <Column name="ID_TAREA" key="true" dataType="INTEGER" notNull="true" autoIncrement="true" defaultValue="" />
+          <Column name="DESCRIPCION" key="false" dataType="VARCHAR" notNull="false" autoIncrement="false" defaultValue="" />
+        </Columns>
         <ForeignKeys>
           <ForeignKey table="HISTORIA DE USUARIO" column="ID_HU" notNull="true" defaultValue="" index="1" name="HISTORIA DE USUARIO_ID_HU" />
         </ForeignKeys>
@@ -316,7 +351,12 @@
       <Relation name="COMPONE" source="HISTORIA DE USUARIO" destination="ASIGNACION EQUIPO_HU" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
       <Relation name="COMPONE" source="PAR" destination="ASIGNACION PERSONA_PAR" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
       <Relation name="COMPONE" source="PERSONA" destination="ASIGNACION PERSONA_PAR" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
-      <Relation name="APROBADA-NO APROBADA-PENDIENTE" source="HISTORIA DE USUARIO" destination="ESTADO HISTORIA DE USUARIO" kind="1n_non_id" start="true" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="PROYECTO" destination="ASIGNACION PROYECTO_HU" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="HISTORIA DE USUARIO" destination="ASIGNACION PROYECTO_HU" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="EQUIPO" destination="ASIGNACION EQUIPO_PROYECTO" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="COMPONE" source="PROYECTO" destination="ASIGNACION EQUIPO_PROYECTO" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="CONTIENE" source="HISTORIA DE USUARIO" destination="TAREA" kind="1n" start="false" definition="true" delete="no_action" update="no_action" />
+      <Relation name="CLASIFICA" source="ESTADO HISTORIA DE USUARIO" destination="HISTORIA DE USUARIO" kind="1n_non_id" start="false" definition="true" delete="no_action" update="no_action" />
     </Relations>
   </Model>
   <Diagram>
@@ -332,15 +372,19 @@
         <Table table="PERSONA" x="105" y="415" />
         <Table table="EQUIPO" x="148" y="926" />
         <Table table="TEST" x="1506" y="929" />
-        <Table table="ASIGNACION HU_TEST" x="1214" y="687" />
         <Table table="ASGINACION PERSONA_EQUIPO" x="83" y="790" />
         <Table table="ASIGNAR USER_HU" x="467" y="552" />
         <Table table="ASIGNACION PERSONA_PAR" x="355" y="670" />
-        <Table table="PAR" x="662" y="819" />
         <Table table="ROL" x="859" y="608" />
         <Table table="ASIGNACION EQUIPO_HU" x="407" y="969" />
-        <Table table="HISTORIA DE USUARIO" x="909" y="791" />
-        <Table table="ESTADO HISTORIA DE USUARIO" x="1164" y="990" />
+        <Table table="PROYECTO" x="603" y="1168" />
+        <Table table="ASIGNACION EQUIPO_PROYECTO" x="160" y="1092" />
+        <Table table="PAR" x="662" y="819" />
+        <Table table="ASIGNACION PROYECTO_HU" x="813" y="1050" />
+        <Table table="TAREA" x="1404" y="1059" />
+        <Table table="HISTORIA DE USUARIO" x="925" y="798" />
+        <Table table="ESTADO HISTORIA DE USUARIO" x="1130" y="1147" />
+        <Table table="ASIGNACION HU_TEST" x="1233" y="661" />
       </Tables>
       <Relations>
         <Relation source="ROL" destination="USS_ROL" division="0.5" />
@@ -355,13 +399,18 @@
         <Relation source="EQUIPO" destination="ASGINACION PERSONA_EQUIPO" division="0.5172413793103449" />
         <Relation source="USER" destination="PERSONA" division="0.5" />
         <Relation source="EQUIPO" destination="ASIGNACION EQUIPO_HU" division="0.5" />
-        <Relation source="TEST" destination="ASIGNACION HU_TEST" division="0.5" />
-        <Relation source="HISTORIA DE USUARIO" destination="ASIGNACION HU_TEST" division="0.5" />
-        <Relation source="HISTORIA DE USUARIO" destination="ASIGNACION EQUIPO_HU" division="0.5454545454545454" />
+        <Relation source="HISTORIA DE USUARIO" destination="ASIGNACION HU_TEST" division="0.5084745762711864" />
         <Relation source="PERSONA" destination="ASIGNACION PERSONA_PAR" division="0.8108108108108109" />
         <Relation source="PAR" destination="ASIGNACION PERSONA_PAR" division="0.5882352941176471" />
-        <Relation source="HISTORIA DE USUARIO" destination="ASIGNAR USER_HU" division="0.5" />
-        <Relation source="HISTORIA DE USUARIO" destination="ESTADO HISTORIA DE USUARIO" division="0.5" />
+        <Relation source="HISTORIA DE USUARIO" destination="ASIGNAR USER_HU" division="0.5263157894736842" />
+        <Relation source="HISTORIA DE USUARIO" destination="ASIGNACION PROYECTO_HU" division="0.5" />
+        <Relation source="PROYECTO" destination="ASIGNACION PROYECTO_HU" division="0.8333333333333334" />
+        <Relation source="EQUIPO" destination="ASIGNACION EQUIPO_PROYECTO" division="0.5" />
+        <Relation source="PROYECTO" destination="ASIGNACION EQUIPO_PROYECTO" division="0.5" />
+        <Relation source="HISTORIA DE USUARIO" destination="ASIGNACION EQUIPO_HU" division="0.5454545454545454" />
+        <Relation source="HISTORIA DE USUARIO" destination="TAREA" division="0.6590909090909092" />
+        <Relation source="ESTADO HISTORIA DE USUARIO" destination="HISTORIA DE USUARIO" division="0.5" />
+        <Relation source="TEST" destination="ASIGNACION HU_TEST" division="0.5" />
       </Relations>
       <Regions />
     </Shapes>
