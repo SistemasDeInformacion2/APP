@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+package Visual;
 
-import control.PuenteDBLogin;
-import control.PuenteDBNuevaCuenta;
+import Control.PuenteDBLogin;
+import Control.PuenteDBNuevaCuenta;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;

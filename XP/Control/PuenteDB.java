@@ -7,16 +7,16 @@ import java.util.*;
 public class PuenteDB 
 {
     private String driver = "org.postgresql.Driver";
-    private String url = "jdbc:postgresql://localhost:5433/TBD";
-    private String username = "user";
-    private String pass = "clave";
+    private String url = "jdbc:postgresql://10.0.0.27:5432/DBSis";
+    private String username = "postgres";
+    private String pass = "admin";
     protected Connection connection;
     
     public PuenteDB()throws SQLException, ClassNotFoundException
     {
-        Class.forName("org.postgresql.Driver");
+        Class.forName(driver);
             connection = DriverManager
-            .getConnection("jdbc:postgresql://localhost:5433/TDB",
-            "postgres", "123db");
+            .getConnection(url,
+            username, pass);
     }
 }

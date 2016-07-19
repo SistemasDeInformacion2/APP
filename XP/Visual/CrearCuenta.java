@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+package Visual;
 
-import control.PuenteDBNuevaCuenta;
-import control.ValidarCrearCuenta;
+import Control.PuenteDBNuevaCuenta;
+import Control.ValidarCrearCuenta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

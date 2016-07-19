@@ -5,9 +5,10 @@ import Control.*;
 
 public class HistoriaUsuario 
 {
-    private String descripcion;
+    private String descripcion, nombre;
     private ArrayList<Tarea> tareas_asociadas;
     private int importancia;
+    private int id_hu;
     private boolean asignada=false;
     private boolean finalizada=false;
     private boolean rechazada=false;
@@ -15,8 +16,28 @@ public class HistoriaUsuario
     
     public HistoriaUsuario()
     {
+        id_hu=-1;
         tareas_asociadas = new ArrayList<Tarea>();
-        controlHU = new ControlHU();
+    }
+    
+    public HistoriaUsuario( String nombre, String descripcion, int importancia )
+    {
+        id_hu=-1;
+        tareas_asociadas = new ArrayList<Tarea>();
+        setDescripcion( descripcion );
+        setImportancia( importancia );
+        setNombre( nombre );
+    }
+    
+    public HistoriaUsuario( String nombre, String descripcion, int importancia, int id_hu )
+    {
+        this.id_hu=id_hu;
+        tareas_asociadas = new ArrayList<Tarea>();
+        setDescripcion( descripcion );
+        setImportancia( importancia );
+        setNombre( nombre );
+        
+        controlHU = new ControlHU(this);
     }
     
     public String getDescripcion()
@@ -24,9 +45,10 @@ public class HistoriaUsuario
         return descripcion;
     }
     
-    public void setDescripcion(String descripcion)
+    public void setDescripcion( String descripcion )
     {
-        this.descripcion=descripcion;
+        if( !descripcion.equals("") && !descripcion.chars().allMatch( Character::isDigit ) )
+            this.descripcion=descripcion;
     }
     
     public void asociarTarea(Tarea t)
@@ -43,7 +65,7 @@ public class HistoriaUsuario
     
     public void setImportancia (int importancia)
     {
-        this.importancia+=importancia;
+        this.importancia=importancia;
     }
     
     public int getImportancia()
@@ -117,10 +139,11 @@ public class HistoriaUsuario
         return controlHU.estaAprobada();
     }
     
+    /*
     public void aprobar()
     {
         controlHU.aprobar();
-    }
+    }*/
     
     public void finalizar()
     {
@@ -130,5 +153,16 @@ public class HistoriaUsuario
         }
         
         finalizada=true;
+    }
+    
+    public void setNombre( String nombre )
+    {
+        if( !nombre.equals("") && !nombre.chars().allMatch( Character::isDigit ) )
+            this.nombre=nombre;
+    }
+    
+    public String getNombre()
+    {
+        return nombre;
     }
 }
