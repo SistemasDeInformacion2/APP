@@ -1,0 +1,11 @@
+Compilar todo de nuevo, ejecutar en una base vacía db.sql y llenado.sql, buscar errores.
+
+Las cosas por realizar:
+Completar historias de usuario
+Completar tareas
+Aplicar Roles
+Manejar la sesion en todas las interfaces gráficas para saber si el usuario ve por primera vez una historia/tarea e insertar en la tabla
+
+Si alcanza el tiempo:
+Implementar lo de parejas
+Parametrizar lo del proyecto

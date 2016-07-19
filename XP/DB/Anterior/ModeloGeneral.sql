@@ -1,6 +1,6 @@
 -- -------------------------------------------------------------------------
 -- PostgreSQL SQL create tables
--- exported at Tue Jul 19 16:49:01 BOT 2016 with easyDesigner
+-- exported at Mon Jul 18 20:19:53 BOT 2016 with easyDesigner
 -- -------------------------------------------------------------------------
 
 -- -------------------------------------------------------------------------
@@ -11,6 +11,15 @@ CREATE TABLE "USER" (
   "LOGIN" VARCHAR NULL,
   "PASSWORD" VARCHAR NULL,
   PRIMARY KEY ("ID_USS")
+);
+
+-- -------------------------------------------------------------------------
+-- Table: USS_ROL
+-- -------------------------------------------------------------------------
+CREATE TABLE "USS_ROL" (
+  "USER_ID_USS" INTEGER NOT NULL,
+  "ROL_ID_ROL" INTEGER NOT NULL,
+  PRIMARY KEY ("USER_ID_USS", "ROL_ID_ROL")
 );
 
 -- -------------------------------------------------------------------------
@@ -67,7 +76,6 @@ CREATE TABLE "HISTORIA DE USUARIO" (
   "DESCRIPCION" VARCHAR NOT NULL,
   "NOMBRE" VARCHAR NOT NULL,
   "IMPORTANCIA" INTEGER NULL,
-  "RAZON RECHAZO" VARCHAR NULL,
   PRIMARY KEY ("ID_HU")
 );
 
@@ -90,8 +98,6 @@ CREATE TABLE "PERSONA" (
   "NOMBRE" VARCHAR NULL,
   "APELLIDO PATERNO" VARCHAR NULL,
   "APELLIDO MATERNO" VARCHAR NULL,
-  "CORREO" VARCHAR NULL,
-  "NUMERO" VARCHAR NULL,
   PRIMARY KEY ("ID_PERSONA")
 );
 
@@ -217,31 +223,16 @@ CREATE TABLE "TAREA" (
 );
 
 -- -------------------------------------------------------------------------
--- Table: HISTORIA VISTA
+-- Relations for table: USS_ROL
 -- -------------------------------------------------------------------------
-CREATE TABLE "HISTORIA VISTA" (
-  "HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
-  "USER_ID_USS" INTEGER NOT NULL,
-  PRIMARY KEY ("HISTORIA DE USUARIO_ID_HU", "USER_ID_USS")
-);
-
--- -------------------------------------------------------------------------
--- Table: HISTORIA APROBADA
--- -------------------------------------------------------------------------
-CREATE TABLE "HISTORIA APROBADA" (
-  "HISTORIA DE USUARIO_ID_HU" INTEGER NOT NULL,
-  "USER_ID_USS" INTEGER NOT NULL,
-  PRIMARY KEY ("HISTORIA DE USUARIO_ID_HU", "USER_ID_USS")
-);
-
--- -------------------------------------------------------------------------
--- Table: USS ROL
--- -------------------------------------------------------------------------
-CREATE TABLE "USS ROL" (
-  "USER_ID_USS" INTEGER NOT NULL,
-  "ROL_ID_ROL" INTEGER NOT NULL,
-  PRIMARY KEY ("USER_ID_USS", "ROL_ID_ROL")
-);
+ALTER TABLE "USS_ROL" ADD FOREIGN KEY ("USER_ID_USS") 
+    REFERENCES "USER" ("ID_USS")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+ALTER TABLE "USS_ROL" ADD FOREIGN KEY ("ROL_ID_ROL") 
+    REFERENCES "ROL" ("ID_ROL")
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
 
 -- -------------------------------------------------------------------------
 -- Relations for table: ROL_FUNCION
@@ -380,42 +371,6 @@ ALTER TABLE "ASIGNACION PROYECTO_HU" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU
 -- -------------------------------------------------------------------------
 ALTER TABLE "TAREA" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
     REFERENCES "HISTORIA DE USUARIO" ("ID_HU")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-
--- -------------------------------------------------------------------------
--- Relations for table: HISTORIA VISTA
--- -------------------------------------------------------------------------
-ALTER TABLE "HISTORIA VISTA" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
-    REFERENCES "HISTORIA DE USUARIO" ("ID_HU")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-ALTER TABLE "HISTORIA VISTA" ADD FOREIGN KEY ("USER_ID_USS") 
-    REFERENCES "USER" ("ID_USS")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-
--- -------------------------------------------------------------------------
--- Relations for table: HISTORIA APROBADA
--- -------------------------------------------------------------------------
-ALTER TABLE "HISTORIA APROBADA" ADD FOREIGN KEY ("HISTORIA DE USUARIO_ID_HU") 
-    REFERENCES "HISTORIA DE USUARIO" ("ID_HU")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-ALTER TABLE "HISTORIA APROBADA" ADD FOREIGN KEY ("USER_ID_USS") 
-    REFERENCES "USER" ("ID_USS")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-
--- -------------------------------------------------------------------------
--- Relations for table: USS ROL
--- -------------------------------------------------------------------------
-ALTER TABLE "USS ROL" ADD FOREIGN KEY ("USER_ID_USS") 
-    REFERENCES "USER" ("ID_USS")
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION;
-ALTER TABLE "USS ROL" ADD FOREIGN KEY ("ROL_ID_ROL") 
-    REFERENCES "ROL" ("ID_ROL")
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
 
