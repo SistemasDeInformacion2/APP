@@ -17,7 +17,9 @@ public class Tarea {
     private boolean aprobada = false;
     private boolean rechazada = false;
     private int importancia = 0;
-
+    private int cantidad_aprobaciones=0;
+    private int cantidad_vistos=0;
+    
     public Tarea(String descripcion) {
 
         this.descripcion = descripcion;
@@ -94,7 +96,11 @@ public class Tarea {
 
     public void aprobar() {
 
-        aprobada = true;
+        cantidad_aprobaciones++;
+    }
+    
+    public void visto(){
+        cantidad_vistos++;
     }
 
 }
