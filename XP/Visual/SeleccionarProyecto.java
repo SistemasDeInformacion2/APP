@@ -49,19 +49,19 @@ public class SeleccionarProyecto extends javax.swing.JFrame
 
         jLabel1.setText("Seleccionar proyecto:");
         
-        
-        DefaultComboBoxModel auxComboBox = new javax.swing.DefaultComboBoxModel<>();        
+        auxComboBox = new javax.swing.DefaultComboBoxModel<>();        
         
         
         for( int i=0; i<listaProyectos.size(); i++ )
-            auxComboBox.addElement( listaProyectos.get(i).getTitulo() );
+            auxComboBox.addElement( listaProyectos.get(i) );
         
         jComboBox1.setModel(auxComboBox);
 
         botAceptar.setText("Aceptar");
-        botAceptar.addActionListener(new java.awt.event.ActionListener() {
+        botAceptar.addActionListener(new java.awt.event.ActionListener() 
+        {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botAceptarActionPerformed(evt);
+                botAceptarActionPerformed( evt );
             }
         });
 
@@ -120,23 +120,18 @@ public class SeleccionarProyecto extends javax.swing.JFrame
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void botNuevoProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botNuevoProyectoActionPerformed
+    private void botNuevoProyectoActionPerformed(java.awt.event.ActionEvent evt) 
+    {
         new CrearProyecto(this);
-    }//GEN-LAST:event_botNuevoProyectoActionPerformed
+    }
 
-    private void botAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAceptarActionPerformed
-        new HomeGUI();
-    }//GEN-LAST:event_botAceptarActionPerformed
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botAceptar;
-    private javax.swing.JButton botNuevoProyecto;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    // End of variables declaration//GEN-END:variables
+    private void botAceptarActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+        Sprint aux = (Sprint)auxComboBox.getSelectedItem();
+        new HomeGUI( aux.getId() );
+    }
     
     public void cerrar(){
         try{
@@ -157,4 +152,13 @@ public class SeleccionarProyecto extends javax.swing.JFrame
             System.exit(0);
         }
     }
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botAceptar;
+    private javax.swing.JButton botNuevoProyecto;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private DefaultComboBoxModel auxComboBox;
+    // End of variables declaration//GEN-END:variables
 }

@@ -146,7 +146,7 @@ public class Sprint
        
        return fechaFin;
    }
-   
+      
    public String getTitulo()
    {
        return titulo;
@@ -160,5 +160,11 @@ public class Sprint
    public int getId()
    {
        return id;
+   }
+   
+   //Para la GUI, es interesante usarlo
+   public String toString()
+   {
+       return titulo;
    }
 }
