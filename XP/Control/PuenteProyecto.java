@@ -113,6 +113,29 @@ public class PuenteProyecto extends PuenteDB
         return p;
     }
     
+    public ArrayList<String> mostrarProyectos(){
+        ArrayList<String> titulos = new ArrayList<>();
+        
+        try
+        {
+            String query = "SELECT \"TITULO\" FROM \"PROYECTO\"";
+            
+            Statement sentencia = connection.createStatement();
+            ResultSet result = sentencia.executeQuery(query);
+            
+            while( result.next() )
+            {
+                titulos.add(result.getString(1));
+            }
+        }
+        catch( Exception sqle )
+        {
+            System.out.println(sqle);
+        }
+        
+        return titulos;
+    }
+    
     public ArrayList<Sprint> getLista()
     {
         ArrayList<Sprint> lista = new ArrayList<Sprint>();
