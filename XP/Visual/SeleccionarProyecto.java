@@ -15,9 +15,12 @@ public class SeleccionarProyecto extends javax.swing.JFrame
 {
     private PuenteProyecto puenteProyecto;
     private ArrayList<Sprint> listaProyectos;
+    private Sesion sesion;
     
-    public SeleccionarProyecto() 
+    public SeleccionarProyecto( Sesion sesion ) 
     {
+        this.sesion = sesion;
+        
         try
         {
             puenteProyecto = new PuenteProyecto();
@@ -124,13 +127,13 @@ public class SeleccionarProyecto extends javax.swing.JFrame
 
     private void botNuevoProyectoActionPerformed(java.awt.event.ActionEvent evt) 
     {
-        new CrearProyecto(this);
+        new CrearProyecto(this, sesion );
     }
 
     private void botAceptarActionPerformed(java.awt.event.ActionEvent evt) 
     {
         Sprint aux = (Sprint)auxComboBox.getSelectedItem();
-        new HomeGUI( aux.getId() );
+        new HomeGUI( aux.getId(), sesion );
     }
     
     public void cerrar(){

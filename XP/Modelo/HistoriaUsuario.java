@@ -10,9 +10,9 @@ public class HistoriaUsuario
     private int importancia;
     private int id_hu;
     private boolean asignada=false;
+    private boolean aprobada=false;
     private boolean finalizada=false;
     private boolean rechazada=false;
-    private ControlHU controlHU;
     
     public HistoriaUsuario()
     {
@@ -36,8 +36,6 @@ public class HistoriaUsuario
         setDescripcion( descripcion );
         setImportancia( importancia );
         setNombre( nombre );
-        
-        controlHU = new ControlHU(this);
     }
     
     public String getDescripcion()
@@ -123,9 +121,16 @@ public class HistoriaUsuario
         return finalizada;
     }
     
+    public void rechazarHistoria()
+    {
+        rechazada=true;
+    }
+    
     public void rechazarHistoria( String descripcion )
     {
+        ControlHU controlHU = new ControlHU(this);
         controlHU.rechazar( descripcion );
+        
         rechazada=true;
     }
     
@@ -136,14 +141,13 @@ public class HistoriaUsuario
     
     public boolean estaAprobada()
     {
-        return controlHU.estaAprobada();
+        return aprobada;
     }
     
-    /*
     public void aprobar()
     {
-        controlHU.aprobar();
-    }*/
+        aprobada=true;
+    }
     
     public void finalizar()
     {
@@ -164,5 +168,10 @@ public class HistoriaUsuario
     public String getNombre()
     {
         return nombre;
+    }
+    
+    public int getId()
+    {
+        return id_hu;
     }
 }

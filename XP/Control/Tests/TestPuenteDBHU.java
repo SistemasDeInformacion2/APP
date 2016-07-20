@@ -1,10 +1,10 @@
-package Control.Tests;
+package XP.Control.Tests;
 
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import Control.*;
+import XP.Control.*;
 
 public class TestPuenteDBHU
 {

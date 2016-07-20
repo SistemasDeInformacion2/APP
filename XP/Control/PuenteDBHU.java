@@ -25,6 +25,8 @@ public class PuenteDBHU extends PuenteDB
             sentencia.setInt    (3, importancia );
                 
             sentencia.execute();
+            
+            sentencia.close();
         }
         catch( Exception sqle )
         {
@@ -49,6 +51,8 @@ public class PuenteDBHU extends PuenteDB
             sentencia.setInt    (3, importancia );
                 
             sentencia.execute();
+            
+            sentencia.close();
         }
         catch( Exception sqle )
         {
@@ -73,6 +77,9 @@ public class PuenteDBHU extends PuenteDB
             {
                 nombre = result.getString( "NOMBRE" );
             }
+            
+            sentencia.close();
+            result.close();
         }
         catch( Exception sqle )
         {
@@ -99,6 +106,9 @@ public class PuenteDBHU extends PuenteDB
             {
                 descripcion = result.getString( "DESCRIPCION" );
             }
+            
+            sentencia.close();
+            result.close();
         }
         catch( Exception sqle )
         {
@@ -125,6 +135,9 @@ public class PuenteDBHU extends PuenteDB
             {
                 importancia = result.getInt( "IMPORTANCIA" );
             }
+            
+            sentencia.close();
+            result.close();
         }
         catch( Exception sqle )
         {
@@ -150,6 +163,9 @@ public class PuenteDBHU extends PuenteDB
             
             if( result.next() )
                 visto=true;
+                
+            sentencia.close();
+            result.close();
         }
         catch( Exception sqle )
         {
@@ -173,6 +189,8 @@ public class PuenteDBHU extends PuenteDB
                 sentencia.setInt (2, user );
                 
                 sentencia.execute();
+                
+                sentencia.close();
             }
         }
         catch( Exception sqle )
@@ -197,6 +215,9 @@ public class PuenteDBHU extends PuenteDB
             
             if( result.next() )
                 aprobada=true;
+                
+            sentencia.close();
+            result.close();
         }
         catch( Exception sqle )
         {
@@ -206,11 +227,12 @@ public class PuenteDBHU extends PuenteDB
         return aprobada;
     }
     
-    public void aprobar( int user, int id_hu )
+    public boolean aprobar( int user, int id_hu )
     {
+        boolean success = false;
         try
         {            
-            if( !estaAprobadaPorUser(user, id_hu) )
+            if( !estaAprobadaPorUser(user, id_hu) && !estaRechazada( id_hu ) )
             {
                 String query;
                 query = "INSERT INTO \"HISTORIA APROBADA\" (\"HISTORIA DE USUARIO_ID_HU\", \"USER_ID_USS\") VALUES (?,?);";
@@ -220,12 +242,18 @@ public class PuenteDBHU extends PuenteDB
                 sentencia.setInt (2, user );
                 
                 sentencia.execute();
+                
+                success=true;
+                
+                sentencia.close();
             }
         }
         catch( Exception sqle )
         {
             System.out.println(sqle);
         }
+        
+        return success;
     }
     
     public int cantidadUsuariosAprobaron( int id_hu )
@@ -243,6 +271,9 @@ public class PuenteDBHU extends PuenteDB
             
             if( result.next() )
                 cantidad = result.getInt("total");
+                
+            sentencia.close();
+            result.close();
         }
         catch( Exception sqle )
         {
@@ -259,13 +290,16 @@ public class PuenteDBHU extends PuenteDB
         try
         {
             String query;
-            query = "SELECT COUNT(\"ROL_ID_ROL\") AS total FROM \"USS ROL\" WHERE \"ROL_ID_ROL\"=0 OR \"ROL_ID_ROL\"=2 ;";
+            query = "SELECT COUNT(\"ROL_ID_ROL\") AS total FROM \"USS ROL\" WHERE \"ROL_ID_ROL\"=1 OR \"ROL_ID_ROL\"=3 ;";
             
             Statement sentencia = connection.createStatement();
             ResultSet result = sentencia.executeQuery( query );
             
             if( result.next() )
                 cantidad = result.getInt("total");
+            
+            sentencia.close();
+            result.close();
         }
         catch( Exception sqle )
         {
@@ -291,9 +325,12 @@ public class PuenteDBHU extends PuenteDB
             if( result.next() )
             {
                 int estado = result.getInt("ESTADO HISTORIA DE USUARIO_ID_ESTADO");
-                if( estado==1 )
+                if( estado==2 )
                     rechazada=true;
             }
+            
+            sentencia.close();
+            result.close();
         }
         catch( Exception sqle )
         {
@@ -310,12 +347,14 @@ public class PuenteDBHU extends PuenteDB
             if( !estaRechazada(id_hu) )
             {
                 String query;
-                query = "UPDATE \"HISTORIA DE USUARIO\" SET \"ESTADO HISTORIA DE USUARIO_ID_ESTADO\"=1,\"RAZON RECHAZO\"=? WHERE \"ID_HU\"=? ;";
+                query = "UPDATE \"HISTORIA DE USUARIO\" SET \"ESTADO HISTORIA DE USUARIO_ID_ESTADO\"=2,\"RAZON RECHAZO\"=? WHERE \"ID_HU\"=? ;";
                 
                 PreparedStatement sentencia = connection.prepareStatement(query);
                 sentencia.setString (1, descripcion );
                 sentencia.setInt (2, id_hu );
                 sentencia.execute();
+                
+                sentencia.close();
             }
         }
         catch( Exception sqle )
@@ -344,6 +383,9 @@ public class PuenteDBHU extends PuenteDB
                 
                 lista.add( aux );
             }
+            
+            sentencia.close();
+            result.close();
         }
         catch( Exception sqle )
         {
@@ -351,5 +393,32 @@ public class PuenteDBHU extends PuenteDB
         }
         
         return lista;
+    }
+    
+    public int getEstado( int id_hu )
+    {
+        int estado=0;
+        
+        try
+        {
+            String query;
+            query = "SELECT * FROM \"HISTORIA DE USUARIO\" WHERE \"ID_HU\"=? ;";
+            
+            PreparedStatement sentencia = connection.prepareStatement(query);
+            sentencia.setInt (1, id_hu );
+            ResultSet result = sentencia.executeQuery();
+            
+            if( result.next() )
+                estado = result.getInt("ESTADO HISTORIA DE USUARIO_ID_ESTADO");
+                
+            sentencia.close();
+            result.close();
+        }
+        catch( Exception sqle )
+        {
+            System.out.println(sqle);
+        }
+        
+        return estado;
     }
 }

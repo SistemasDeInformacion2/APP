@@ -4,6 +4,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
 import XP.Control.*;
+import XP.Modelo.*;
 
 /**
  *
@@ -11,10 +12,12 @@ import XP.Control.*;
  */
 public class CrearProyecto extends javax.swing.JFrame 
 {
-    /**
-     * Creates new form CrearProyecto
-     */
-    public CrearProyecto(SeleccionarProyecto selproy) {
+    private Sesion sesion;
+    
+    public CrearProyecto(SeleccionarProyecto selproy, Sesion sesion ) 
+    {
+        this.sesion = sesion;
+        
         initComponents();
         cerrar();
         selecProy = selproy;
@@ -26,7 +29,8 @@ public class CrearProyecto extends javax.swing.JFrame
     }
 
     @SuppressWarnings("unchecked")
-    private void initComponents() {
+    private void initComponents() 
+    {
 
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -114,15 +118,16 @@ public class CrearProyecto extends javax.swing.JFrame
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void botCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCancelarActionPerformed
+    private void botCancelarActionPerformed(java.awt.event.ActionEvent evt) 
+    {
         this.dispose();
         selecProy.setVisible(true);
-    }//GEN-LAST:event_botCancelarActionPerformed
+    }
 
     private void botAceptarActionPerformed(java.awt.event.ActionEvent evt) 
-    {//GEN-FIRST:event_botAceptarActionPerformed
+    {
         PuenteProyecto puenteProyecto;
         
         try
@@ -138,7 +143,7 @@ public class CrearProyecto extends javax.swing.JFrame
         this.dispose();
         selecProy.dispose();
         
-        new SeleccionarProyecto();
+        new SeleccionarProyecto( sesion );
     }//GEN-LAST:event_botAceptarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

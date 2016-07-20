@@ -1,5 +1,7 @@
 package XP.Visual;
-import XP.Modelo.HistoriaUsuario;
+
+import XP.Modelo.*;
+import XP.Control.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,19 +12,31 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class HistoriaUsuarioInterfaz extends javax.swing.JFrame {
 
     private HistoriaUsuario hu;
-    private int value;
+    private int value, aumento_value;
+    private PuenteDBHU gesHis;
+    private Sesion sesion;
     
-    public HistoriaUsuarioInterfaz( HistoriaUsuario hu )  
+    public HistoriaUsuarioInterfaz( HistoriaUsuario hu, Sesion sesion )  
     {        
+        try
+        {
+            gesHis=ConexionDB.pedirPuenteHistorias();
+        }
+        catch( Exception e )
+        {
+            System.out.println( e );
+        }
+        
+        gesHis.visitar( sesion.getIdUser(), hu.getId() );
+        
+        this.sesion=sesion;
         this.hu=hu;
+        
+        value = gesHis.cantidadUsuariosAprobaron( hu.getId() )*( 100/gesHis.cantidadUsuariosTotales() );
+        aumento_value = 100/gesHis.cantidadUsuariosTotales();
+        
         initComponents();         
-        barraProgreso.setValue(value);        
-        barraProgreso.setStringPainted(true);
-        barraProgreso.setBackground(Color.WHITE);
-        barraProgreso.setForeground(Color.YELLOW);        
         setVisible(true);
-        descripcion.setText(hu.getDescripcion());
-        importancia.setText(Integer.toString(hu.getImportancia()));
     }
                            
     private void initComponents() 
@@ -40,7 +54,10 @@ public class HistoriaUsuarioInterfaz extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tarea");
-
+        
+        descripcion.setText(hu.getDescripcion());
+        importancia.setText(Integer.toString(hu.getImportancia()));
+        
         label_descripcion.setText("Descripcion:");
 
         label_importancia.setText("Importancia:");
@@ -53,13 +70,28 @@ public class HistoriaUsuarioInterfaz extends javax.swing.JFrame {
         });
 
         boton_rechazado.setText("No estoy de acuerdo...");
-        boton_rechazado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_rechazadoActionPerformed(evt);
+        boton_rechazado.addActionListener
+        (
+            new java.awt.event.ActionListener() 
+            {
+                public void actionPerformed(java.awt.event.ActionEvent evt) 
+                {
+                    boton_rechazadoActionPerformed(evt);
+                }
             }
-        });
+        );
 
         boton_salir.setText("Salir");
+        boton_salir.addActionListener
+        (
+            new java.awt.event.ActionListener() 
+            {
+                public void actionPerformed(java.awt.event.ActionEvent evt) 
+                {
+                    boton_salirActionPerformed(evt);
+                }
+            }
+        );
 
         label_estado.setText("Estado:");
 
@@ -120,17 +152,24 @@ public class HistoriaUsuarioInterfaz extends javax.swing.JFrame {
                     .addComponent(boton_salir))
                 .addGap(20, 20, 20))
         );
-
+        
         pack();
+        
+        barraProgreso.setValue(value);        
+        barraProgreso.setStringPainted(true);
+        barraProgreso.setBackground(Color.WHITE);
+        
+        if( !hu.estaRechazada() )
+            barraProgreso.setForeground(Color.YELLOW); 
+        else
+            barraProgreso.setForeground(Color.RED);
     }                     
 
     private void boton_aceptadoActionPerformed(java.awt.event.ActionEvent evt) 
-    {  
-        //hu.aprobar();
-        
-        if( !hu.estaRechazada() )
+    {          
+        if( gesHis.aprobar( sesion.getIdUser(), hu.getId() ) )
         {
-            value+=20;  
+            value+=aumento_value;  
             
             if(value>60)
                 barraProgreso.setForeground(Color.GREEN);
@@ -141,7 +180,8 @@ public class HistoriaUsuarioInterfaz extends javax.swing.JFrame {
 
     private void boton_rechazadoActionPerformed(java.awt.event.ActionEvent evt) 
     { 
-        hu.rechazarHistoria("No me gusta");
+        gesHis.rechazar( hu.getId() , "No me gusta" );
+        
         barraProgreso.setForeground(Color.RED);
     }                                               
 

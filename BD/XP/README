@@ -3,21 +3,21 @@ En una base vacía ejecutar:
 2) llenado.sql
 
 Llenado coloca estados de historias a:
-Aprobada    ( ID_ESTADO 0 )
-Rechazada   ( ID_ESTADO 1 )
-En revision ( ID_ESTADO 2 )
+Aprobada    ( ID_ESTADO 1 )
+Rechazada   ( ID_ESTADO 2 )
+En revision ( ID_ESTADO 3 )
 
 Roles de usuarios:
-Team    ( ID_ROL 0 )
-Cliente ( ID_ROL 1 )
-Admin   ( ID_ROL 2 )
+Team    ( ID_ROL 1 )
+Cliente ( ID_ROL 2 )
+Admin   ( ID_ROL 3 )
 
 Añade usuarios:
 ID_USS: 1
 LOGIN: cliente 
 PASSWORD: cliente
 
-ID_USS: 1
+ID_USS: 2
 LOGIN: admin 
 PASSWORD: admin
 

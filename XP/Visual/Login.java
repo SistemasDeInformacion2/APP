@@ -6,6 +6,7 @@
 package XP.Visual;
 
 import XP.Control.*;
+import XP.Modelo.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
@@ -49,11 +50,6 @@ public class Login extends javax.swing.JFrame
         botIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                formMousePressed(evt);
-            }
-        });
 
         lblUsuario.setText("Usuario:");
 
@@ -116,20 +112,21 @@ public class Login extends javax.swing.JFrame
         pack();
     }// </editor-fold>                        
 
-    private void botIngresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        if(conexion.comprobarCuenta(getTxtUsuario(), getTxtContrasena())){
+    private void botIngresarActionPerformed(java.awt.event.ActionEvent evt) 
+    {                                            
+        Sesion aux = conexion.comprobarCuenta(getTxtUsuario(), getTxtContrasena());
+        
+        if( aux!=null )
+        {
             this.dispose();
             JOptionPane.showMessageDialog(null, "Bienvenid@ " + getTxtUsuario() + "\nHas ingresado satisfactoriamente", "Mensaje de Bienvenida", JOptionPane.INFORMATION_MESSAGE);
-            new SeleccionarProyecto();
-        }else{
+            new SeleccionarProyecto( aux );
+        }
+        else
+        {
             JOptionPane.showMessageDialog(null, "Acceso denegado\nUsuario o Contraseña Incorrectos", "Acceso denegado",JOptionPane.ERROR_MESSAGE);
         }
-    }                                           
-
-    private void formMousePressed(java.awt.event.MouseEvent evt) {                                  
-        this.dispose();
-        principal.setVisible(true);
-    }                                 
+    }                                                                        
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton botIngresar;

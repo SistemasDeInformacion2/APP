@@ -8,9 +8,12 @@ public class addHistoryGUI extends javax.swing.JFrame
     private HomeGUI ventanaPrincipal;
     private HistoriaUsuario historia_para_subir;
     private PuenteDBHU puenteHU;
+    private Sesion sesion;
     
-    public addHistoryGUI( HomeGUI ventanaPrincipal ) 
+    public addHistoryGUI( HomeGUI ventanaPrincipal, Sesion sesion ) 
     {       
+        this.sesion = sesion;
+        
         try
         {
             puenteHU=ConexionDB.pedirPuenteHistorias();
@@ -42,7 +45,7 @@ public class addHistoryGUI extends javax.swing.JFrame
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         importancia = new javax.swing.JSpinner();
-        jSpinner1 = new javax.swing.JSpinner();
+        //jSpinner1 = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -72,13 +75,13 @@ public class addHistoryGUI extends javax.swing.JFrame
         condSatisfaccion.setWrapStyleWord(true);
         jScrollPane2.setViewportView(condSatisfaccion);
 
-        jLabel4.setText("Complejidad:");
+        //jLabel4.setText("Complejidad:");
 
         jLabel5.setText("Importancia:");
 
         importancia.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        //jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +116,7 @@ public class addHistoryGUI extends javax.swing.JFrame
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        //.addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -142,7 +145,7 @@ public class addHistoryGUI extends javax.swing.JFrame
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    //.addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(importancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -190,7 +193,7 @@ public class addHistoryGUI extends javax.swing.JFrame
         {    
             this.dispose();
             ventanaPrincipal.dispose();
-            ventanaPrincipal = new HomeGUI( ventanaPrincipal.getIdProyecto() );
+            ventanaPrincipal = new HomeGUI( ventanaPrincipal.getIdProyecto(), sesion );
         }
         else
             System.out.println("Error! al añadir");

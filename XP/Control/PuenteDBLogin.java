@@ -2,6 +2,7 @@ package XP.Control;
 
 import java.util.*;
 import java.sql.*;
+import XP.Modelo.Sesion;
 
 public class PuenteDBLogin extends PuenteDB
 {
@@ -9,9 +10,9 @@ public class PuenteDBLogin extends PuenteDB
         super();
     }
     
-    public boolean comprobarCuenta( String username, String password )
+    public Sesion comprobarCuenta( String username, String password )
     {
-        boolean success = false;
+        Sesion success = null;
         
         try
         {
@@ -24,7 +25,19 @@ public class PuenteDBLogin extends PuenteDB
             ResultSet respuesta = sentencia.executeQuery();
             
             if( respuesta.next() )
-                success=true;
+            {
+                int id_user = respuesta.getInt( "ID_USS" );
+                
+                query = "SELECT * FROM \"USS ROL\" WHERE \"USER_ID_USS\"=? ;";
+                sentencia = connection.prepareStatement(query);
+                sentencia.setInt ( 1, id_user );
+
+                respuesta = sentencia.executeQuery();
+            
+                if( respuesta.next() )
+                    success = new Sesion( id_user, respuesta.getInt( "ROL_ID_ROL" ) );
+            }
+            
             sentencia.close();
             respuesta.close();
         }

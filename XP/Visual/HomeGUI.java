@@ -11,9 +11,11 @@ public class HomeGUI extends javax.swing.JFrame
     private int idProyecto;
     private List<ControlHU> listaHistorias;
     private PuenteDBHU gesHis;
+    private Sesion sesion;
     
-    public HomeGUI( int idProyecto ) 
+    public HomeGUI( int idProyecto, Sesion sesion ) 
     {
+        this.sesion = sesion;
         try
         {
             gesHis=ConexionDB.pedirPuenteHistorias();
@@ -289,12 +291,12 @@ public class HomeGUI extends javax.swing.JFrame
     
     private void abrirHistoria( java.awt.event.ActionEvent evt, int index )
     {
-        new HistoriaUsuarioInterfaz( listaHistorias.get(index).getHistoria() );
+        new HistoriaUsuarioInterfaz( listaHistorias.get(index).getHistoria(), sesion );
     }
     
     private void anadirHistoria(java.awt.event.ActionEvent evt) 
     {                                           
-        addHistoryGUI nueva_ventana_historia = new addHistoryGUI( this );
+        addHistoryGUI nueva_ventana_historia = new addHistoryGUI( this, sesion );
     }
     
     private void seleccionarSprint(java.awt.event.ActionEvent evt) 

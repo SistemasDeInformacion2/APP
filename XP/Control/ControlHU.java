@@ -53,8 +53,14 @@ public class ControlHU
         String descripcion = puenteHU.getDescripcion( id_hu );
         String nombre = puenteHU.getNombre( id_hu );
         int importancia = puenteHU.getImportancia( id_hu );
+        int estado = puenteHU.getEstado( id_hu );
         
         HistoriaUsuario hu = new HistoriaUsuario( nombre, descripcion, importancia, id_hu );
+        
+        if( estado == 2 )
+            hu.rechazarHistoria();
+        else if ( estado== 1 )
+            hu.aprobar();
         
         return hu;
     }
