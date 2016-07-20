@@ -109,8 +109,8 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void botonNuevaCuentaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        new CrearCuenta();
-        this.dispose();
+        new CrearCuenta( this );
+        this.setVisible( false );
     }                                                
 
     private void botonIngresoActionPerformed(java.awt.event.ActionEvent evt) {                                             

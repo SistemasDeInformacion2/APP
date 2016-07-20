@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+package XP.Visual;
 
-import control.PuenteDBNuevaCuenta;
-import control.ValidarCrearCuenta;
+import XP.Control.PuenteDBNuevaCuenta;
+import XP.Control.ValidarCrearCuenta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -261,6 +261,7 @@ botOk.addActionListener(new java.awt.event.ActionListener() {
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         conexion.cerrar();
         this.dispose();
+        principal.setVisible(true);
     }                                          
 
     private void botOkActionPerformed(java.awt.event.ActionEvent evt) {                                      

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package control;
+package XP.Control;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import visual.CrearCuenta;
+import XP.Visual.CrearCuenta;
 
 /**
  *
