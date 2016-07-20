@@ -10,9 +10,19 @@ public class HomeGUI extends javax.swing.JFrame
 {
     private int idProyecto;
     private List<ControlHU> listaHistorias;
+    private PuenteDBHU gesHis;
     
     public HomeGUI( int idProyecto ) 
     {
+        try
+        {
+            gesHis=ConexionDB.pedirPuenteHistorias();
+        }
+        catch( Exception e )
+        {
+            System.out.println( e );
+        }
+        
         initComponents();
         this.setTitle("XP");
         this.setLocationRelativeTo(null);
@@ -51,18 +61,7 @@ public class HomeGUI extends javax.swing.JFrame
             .addGap(0, 498, Short.MAX_VALUE)
         );
 
-        //paneles.addTab("TaskBoard", taskboard);
-        
-        ObtenerHistorias gesHis=null;
-        
-        try
-        {
-            gesHis = new ObtenerHistorias();
-        }
-        catch( Exception e )
-        {
-            System.out.println( e );
-        }
+        //paneles.addTab("TaskBoard", taskboard);     
         
         listaHistorias = gesHis.getLista();
         HistoriaUsuario historia_usuario;
@@ -295,7 +294,7 @@ public class HomeGUI extends javax.swing.JFrame
     
     private void anadirHistoria(java.awt.event.ActionEvent evt) 
     {                                           
-        //addHistoryGUI nueva_ventana_historia = new addHistoryGUI( this );
+        addHistoryGUI nueva_ventana_historia = new addHistoryGUI( this );
     }
     
     private void seleccionarSprint(java.awt.event.ActionEvent evt) 

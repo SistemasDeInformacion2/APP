@@ -38,7 +38,7 @@ public class HistoriaUsuarioInterfaz extends javax.swing.JFrame {
         estado = new javax.swing.JLabel();
         barraProgreso =  new javax.swing.JProgressBar(JProgressBar.VERTICAL);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tarea");
 
         label_descripcion.setText("Descripcion:");
@@ -141,7 +141,7 @@ public class HistoriaUsuarioInterfaz extends javax.swing.JFrame {
 
     private void boton_rechazadoActionPerformed(java.awt.event.ActionEvent evt) 
     { 
-        hu.rechazarHistoria("");
+        hu.rechazarHistoria("No me gusta");
         barraProgreso.setForeground(Color.RED);
     }                                               
 

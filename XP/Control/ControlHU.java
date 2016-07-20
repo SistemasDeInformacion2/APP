@@ -11,14 +11,7 @@ public class ControlHU
     
     public ControlHU( int id_hu )
     {
-        try
-        {
-            puenteHU = new PuenteDBHU();
-        }
-        catch( Exception e )
-        {
-            System.out.println(e);
-        }
+        initConexion();
         
         this.id_hu = id_hu;
         historia_usuario=initHistoria();
@@ -26,16 +19,21 @@ public class ControlHU
     
     public ControlHU( HistoriaUsuario historia_usuario )
     {
+        initConexion();
+        
+        this.historia_usuario = historia_usuario;
+    }
+    
+    private void initConexion()
+    {
         try
         {
-            puenteHU = new PuenteDBHU();
+            puenteHU = ConexionDB.pedirPuenteHistorias();
         }
         catch( Exception e )
         {
             System.out.println(e);
         }
-        
-        this.historia_usuario = historia_usuario;
     }
     
     public void addHistoria()

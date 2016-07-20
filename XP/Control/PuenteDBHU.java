@@ -3,6 +3,8 @@ package XP.Control;
 import java.sql.*;
 import java.util.*;
 
+import XP.Modelo.HistoriaUsuario;
+
 public class PuenteDBHU extends PuenteDB
 {
     public PuenteDBHU()throws SQLException, ClassNotFoundException
@@ -12,6 +14,30 @@ public class PuenteDBHU extends PuenteDB
     
     public void addHistoria( String nombre, String descripcion, int importancia )
     {
+        try
+        {            
+            String query;
+            query = "INSERT INTO \"HISTORIA DE USUARIO\" (\"DESCRIPCION\", \"NOMBRE\", \"IMPORTANCIA\", \"ESTADO HISTORIA DE USUARIO_ID_ESTADO\") VALUES (?,?,?,2);";
+                
+            PreparedStatement sentencia = connection.prepareStatement(query);
+            sentencia.setString (1, descripcion );
+            sentencia.setString (2, nombre );
+            sentencia.setInt    (3, importancia );
+                
+            sentencia.execute();
+        }
+        catch( Exception sqle )
+        {
+            System.out.println(sqle);
+        }
+    }
+    
+    public void addHistoria( HistoriaUsuario historia_usuario )
+    {
+        String nombre = historia_usuario.getNombre();
+        String descripcion = historia_usuario.getDescripcion();
+        int importancia = historia_usuario.getImportancia();
+        
         try
         {            
             String query;
@@ -296,5 +322,34 @@ public class PuenteDBHU extends PuenteDB
         {
             System.out.println(sqle);
         }
+    }
+    
+    public ArrayList<ControlHU> getLista()
+    {
+        ArrayList<ControlHU> lista = new ArrayList<ControlHU>();
+        
+        try
+        {
+            String query;
+            query = "SELECT * FROM \"HISTORIA DE USUARIO\";";
+            
+            PreparedStatement sentencia = connection.prepareStatement(query);
+            ResultSet result = sentencia.executeQuery();
+            
+            while( result.next() )
+            {
+                int id = result.getInt( "ID_HU" );
+                
+                ControlHU aux = new ControlHU( id );
+                
+                lista.add( aux );
+            }
+        }
+        catch( Exception sqle )
+        {
+            System.out.println(sqle);
+        }
+        
+        return lista;
     }
 }

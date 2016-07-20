@@ -35,6 +35,10 @@ public class TareaInterfaz extends javax.swing.JFrame {
         barraProgreso.setForeground(Color.YELLOW);        
         descripcion.setText(tarea.getDescripcion());
         importancia.setText(Integer.toString(tarea.getImportancia()));
+        
+        initComponents();
+        setVisible(true);
+        
     }
     
     /**
