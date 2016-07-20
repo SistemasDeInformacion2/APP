@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package XP.Modelo.Tests;
 
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;

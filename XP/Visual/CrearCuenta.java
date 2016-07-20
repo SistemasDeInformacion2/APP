@@ -269,6 +269,7 @@ botOk.addActionListener(new java.awt.event.ActionListener() {
         if(validarCuenta.getCamposRequeridos()==0){
             conexion.registrarUser(getTxtUsuario(),getTxtContrasena());
             conexion.registrarPersona(getTxtNombre(),getTxtApellido(),getFechaNacimiento(),getTxtCorreo(),getTxtCelular());
+            conexion.addRolUser( 1 );
             conexion.cerrar();
             JOptionPane.showMessageDialog(null, "Sus datos se han guardado satisfactoriamente","Registro Completado", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();

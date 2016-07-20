@@ -5,9 +5,9 @@ import java.sql.*;
 public class ConexionDB
 {
     private String driver = "org.postgresql.Driver";
-    private String url = "jdbc:postgresql://localhost:5433/DBSis";
+    private String url = "jdbc:postgresql://localhost:5432/DBsis";
     private String username = "postgres";
-    private String pass = "123db";
+    private String pass = "admin";
     protected Connection connection;
     
     public ConexionDB()

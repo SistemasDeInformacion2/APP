@@ -5,9 +5,7 @@
  */
 package XP.Control;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +20,7 @@ public class PuenteDBNuevaCuenta extends PuenteDB{
     
     public boolean estaRegistrado(String nombre, String apellido){
         boolean registrado = false;
-        String consulta = "SELECT \"NOMBRES\", \"APELLIDOS\" FROM \"PERSONA\" WHERE \"NOMBRES\"='"+nombre+"' AND  \"APELLIDOS\"='"+apellido+"'";
+        String consulta = "SELECT \"NOMBRE\", \"APELLIDO PATERNO\" FROM \"PERSONA\" WHERE \"NOMBRE\"='"+nombre+"' AND  \"APELLIDO PATERNO\"='"+apellido+"'";
         
         try{
             Statement st = connection.createStatement();
@@ -34,13 +32,6 @@ public class PuenteDBNuevaCuenta extends PuenteDB{
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex, "Error de conexion", JOptionPane.ERROR_MESSAGE);
         }
-//        finally{
-//            try {
-//                connection.close();
-//            } catch (SQLException ex2) {
-//                JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
         
         return registrado;
     }
@@ -59,13 +50,6 @@ public class PuenteDBNuevaCuenta extends PuenteDB{
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex, "Error de conexion", JOptionPane.ERROR_MESSAGE);
         }
-//        finally{
-//            try {
-//                connection.close();
-//            } catch (SQLException ex2) {
-//                JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
         
         return disponible;
     }
@@ -79,18 +63,11 @@ public class PuenteDBNuevaCuenta extends PuenteDB{
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex, "Error de conexion", JOptionPane.ERROR_MESSAGE);
         }
-//        finally{
-//            try {
-//                connection.close();
-//            } catch (SQLException ex2) {
-//                JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
     }
     
     public void registrarPersona(String nombres, String apellidos, String fechaNacimiento, String correo, String celular){
-        String queryP = "INSERT INTO \"PERSONA\"(\"USER_ID_USS\",\"NOMBRES\", \"APELLIDOS\","+
-                                                    "\"FECHA_NAC\",\"CORREO\",\"CELULAR\") " +
+        String queryP = "INSERT INTO \"PERSONA\"(\"USER_ID_USS\",\"NOMBRE\", \"APELLIDO PATERNO\","+
+                                                    "\"APELLIDO MATERNO\",\"CORREO\",\"NUMERO\") " +
                             "VALUES ((SELECT MAX(\"ID_USS\") FROM \"USER\"),'"+nombres+"','"+
                                         apellidos+"','"+fechaNacimiento+"','"+correo+"','"+celular+"')";
                 
@@ -100,13 +77,6 @@ public class PuenteDBNuevaCuenta extends PuenteDB{
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex, "Error de conexion", JOptionPane.ERROR_MESSAGE);
         }
-//        finally{
-//            try {
-//                connection.close();
-//            } catch (SQLException ex2) {
-//                JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
     }
     
     public void cerrar(){
@@ -115,5 +85,28 @@ public class PuenteDBNuevaCuenta extends PuenteDB{
             } catch (SQLException ex2) {
                 JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
             }
+    }
+    
+    public boolean addRolUser( int rol )
+    {
+        boolean success = false;
+        
+        try
+        {
+            String query;
+            query = "INSERT INTO \"USS ROL\" (\"USER_ID_USS\", \"ROL_ID_ROL\") VALUES ( (SELECT MAX(\"ID_USS\") FROM \"USER\") , ?);";
+            PreparedStatement sentencia = connection.prepareStatement(query);
+            sentencia.setInt (1, rol);
+            sentencia.execute();
+            
+            success=true;
+            sentencia.close();
+        }
+        catch( Exception e )
+        {
+            System.out.println(e);
+        }
+        
+        return success;
     }
 }
