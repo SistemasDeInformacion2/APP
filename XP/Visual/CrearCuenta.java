@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package XP.Visual;
+package visual;
 
-import XP.Control.PuenteDBNuevaCuenta;
-import XP.Control.ValidarCrearCuenta;
+import control.PuenteDBNuevaCuenta;
+import control.ValidarCrearCuenta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,8 +20,9 @@ public class CrearCuenta extends javax.swing.JFrame {
     /**
      * Creates new form CrearCuenta
      */
-    public CrearCuenta() {
+    public CrearCuenta(Principal prpal) {
         initComponents();
+        principal = prpal;
         this.setTitle("Nueva cuenta");
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -258,8 +259,8 @@ botOk.addActionListener(new java.awt.event.ActionListener() {
     }// </editor-fold>                        
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        conexion.cerrar();
         this.dispose();
-        new Principal();
     }                                          
 
     private void botOkActionPerformed(java.awt.event.ActionEvent evt) {                                      
@@ -267,9 +268,9 @@ botOk.addActionListener(new java.awt.event.ActionListener() {
         if(validarCuenta.getCamposRequeridos()==0){
             conexion.registrarUser(getTxtUsuario(),getTxtContrasena());
             conexion.registrarPersona(getTxtNombre(),getTxtApellido(),getFechaNacimiento(),getTxtCorreo(),getTxtCelular());
+            conexion.cerrar();
             JOptionPane.showMessageDialog(null, "Sus datos se han guardado satisfactoriamente","Registro Completado", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            new Principal();
         }
     }                                     
     
@@ -374,4 +375,46 @@ botOk.addActionListener(new java.awt.event.ActionListener() {
     public void setValFechaNacimiento(String mensaje) {
         valFechaNacimiento.setText(mensaje);
     }
+
+    public void setBoxAno(javax.swing.JComboBox<String> boxAno) {
+        this.boxAno = boxAno;
+    }
+
+    public void setBoxDia(javax.swing.JComboBox<String> boxDia) {
+        this.boxDia = boxDia;
+    }
+
+    public void setBoxMes(javax.swing.JComboBox<String> boxMes) {
+        this.boxMes = boxMes;
+    }
+
+    public void setTxtApellido(javax.swing.JTextField txtApellido) {
+        this.txtApellido = txtApellido;
+    }
+
+    public void setTxtCelular(javax.swing.JTextField txtCelular) {
+        this.txtCelular = txtCelular;
+    }
+
+    public void setTxtContrasena(javax.swing.JPasswordField txtContrasena) {
+        this.txtContrasena = txtContrasena;
+    }
+
+    public void setTxtCorreo(javax.swing.JTextField txtCorreo) {
+        this.txtCorreo = txtCorreo;
+    }
+
+    public void setTxtNombre(javax.swing.JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
+    public void setTxtUsuario(javax.swing.JTextField txtUsuario) {
+        this.txtUsuario = txtUsuario;
+    }
+
+    public void setTxtValContrasena(javax.swing.JPasswordField txtValContrasena) {
+        this.txtValContrasena = txtValContrasena;
+    }
+    
+    
 }
