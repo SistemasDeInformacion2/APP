@@ -115,7 +115,7 @@ public class PuenteDBHU extends PuenteDB
         try
         {
             String query;
-            query = "SELECT \"ID VISTO\" FROM \"VISTO\" WHERE \"ID_HU\"=? AND \"ID_USER\"=? ;";
+            query = "SELECT * FROM \"HISTORIA VISTA\" WHERE \"HISTORIA DE USUARIO_ID_HU\"=? AND \"USER_ID_USS\"=? ;";
             
             PreparedStatement sentencia = connection.prepareStatement(query);
             sentencia.setInt (1, id_hu );
@@ -140,7 +140,7 @@ public class PuenteDBHU extends PuenteDB
             if( !estaVistoPorUser(user, id_hu) )
             {
                 String query;
-                query = "INSERT INTO \"VISTO\" (\"ID_HU\", \"ID_USER\") VALUES (?,?);";
+                query = "INSERT INTO \"HISTORIA VISTA\" (\"HISTORIA DE USUARIO_ID_HU\", \"USER_ID_USS\") VALUES (?,?);";
                 
                 PreparedStatement sentencia = connection.prepareStatement(query);
                 sentencia.setInt (1, id_hu );
@@ -162,7 +162,7 @@ public class PuenteDBHU extends PuenteDB
         try
         {
             String query;
-            query = "SELECT \"ID_APROBADO\" FROM \"APROBADO\" WHERE \"ID_HU\"=? AND \"ID_USER\"=? ;";
+            query = "SELECT * FROM \"HISTORIA APROBADA\" WHERE \"HISTORIA DE USUARIO_ID_HU\"=? AND \"USER_ID_USS\"=? ;";
             
             PreparedStatement sentencia = connection.prepareStatement(query);
             sentencia.setInt (1, id_hu );
@@ -187,7 +187,7 @@ public class PuenteDBHU extends PuenteDB
             if( !estaAprobadaPorUser(user, id_hu) )
             {
                 String query;
-                query = "INSERT INTO \"APROBADO\" (\"ID_HU\", \"ID_USER\") VALUES (?,?);";
+                query = "INSERT INTO \"HISTORIA APROBADA\" (\"HISTORIA DE USUARIO_ID_HU\", \"USER_ID_USS\") VALUES (?,?);";
                 
                 PreparedStatement sentencia = connection.prepareStatement(query);
                 sentencia.setInt (1, id_hu );
@@ -209,7 +209,7 @@ public class PuenteDBHU extends PuenteDB
         try
         {
             String query;
-            query = "SELECT COUNT(\"ID_APROBADO\") AS total FROM \"APROBADO\" WHERE \"ID_HU\"=?;";
+            query = "SELECT COUNT(\"HISTORIA DE USUARIO_ID_HU\") AS total FROM \"HISTORIA APROBADA\" WHERE \"HISTORIA DE USUARIO_ID_HU\"=?;";
             
             PreparedStatement sentencia = connection.prepareStatement(query);
             sentencia.setInt (1, id_hu );
@@ -233,7 +233,7 @@ public class PuenteDBHU extends PuenteDB
         try
         {
             String query;
-            query = "SELECT COUNT(\"ROL_ID_ROL\") AS total FROM \"USER\" WHERE \"ROL_ID_ROL\"=0;";
+            query = "SELECT COUNT(\"ROL_ID_ROL\") AS total FROM \"USS ROL\" WHERE \"ROL_ID_ROL\"=0 OR \"ROL_ID_ROL\"=2 ;";
             
             Statement sentencia = connection.createStatement();
             ResultSet result = sentencia.executeQuery( query );
