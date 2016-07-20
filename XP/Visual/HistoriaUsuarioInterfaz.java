@@ -1,5 +1,5 @@
 package XP.Visual;
-
+import javax.swing.JOptionPane;
 import XP.Modelo.*;
 import XP.Control.*;
 import java.awt.Color;
@@ -169,20 +169,22 @@ public class HistoriaUsuarioInterfaz extends javax.swing.JFrame {
     {          
         if( gesHis.aprobar( sesion.getIdUser(), hu.getId() ) )
         {
-            value+=aumento_value;  
-            
-            if(value>60)
-                barraProgreso.setForeground(Color.GREEN);
-                
+            value+=aumento_value;              
+            if(value>60 && !hu.estaRechazada())
+                barraProgreso.setForeground(Color.GREEN);                
             barraProgreso.setValue(value); 
         }
     }                                              
 
     private void boton_rechazadoActionPerformed(java.awt.event.ActionEvent evt) 
-    { 
-        gesHis.rechazar( hu.getId() , "No me gusta" );
-        
-        barraProgreso.setForeground(Color.RED);
+    {         
+        String rechazo="";
+        rechazo=JOptionPane.showInputDialog("Ingrese el motivo de rechazo");
+        if(!rechazo.equals("")){
+            gesHis.rechazar( hu.getId() , rechazo );
+            barraProgreso.setForeground(Color.RED);
+            barraProgreso.setValue(value); 
+        }
     }                                               
 
     private void boton_salirActionPerformed(java.awt.event.ActionEvent evt) 
