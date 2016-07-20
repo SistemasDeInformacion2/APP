@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package XP.Control;
+package control;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import XP.Visual.*;
+import visual.CrearCuenta;
 
 /**
  *
@@ -52,6 +52,7 @@ public class ValidarCrearCuenta {
             Matcher mat = pat.matcher(nuevaCuenta.getTxtNombre());
             if(mat.find()){
                 nuevaCuenta.setValNombre("");
+                personaRegistrada();
             }else{
                 nuevaCuenta.setValNombre("Caracteres Invalidos");
                 camposRequeridos++;
@@ -68,10 +69,22 @@ public class ValidarCrearCuenta {
             Matcher mat = pat.matcher(nuevaCuenta.getTxtApellido());
             if(mat.find()){
                 nuevaCuenta.setValApellido("");
+                personaRegistrada();
             }else{
                 nuevaCuenta.setValApellido("Caracteres Invalidos");
                 camposRequeridos++;
             }
+        }
+    }
+    
+    public void personaRegistrada(){
+        if(conx.estaRegistrado(nuevaCuenta.getTxtNombre(), nuevaCuenta.getTxtApellido())){
+            nuevaCuenta.setValNombre("Nombre Registrado");
+            nuevaCuenta.setValApellido("Apellido Registrado");
+            camposRequeridos++;
+            camposRequeridos++;
+        }else{
+            nuevaCuenta.setValUsuario("");
         }
     }
     
@@ -146,10 +159,10 @@ public class ValidarCrearCuenta {
     
     public void usuarioDisponible(){
         if(conx.estaDisponibleUser(nuevaCuenta.getTxtUsuario())){
+            nuevaCuenta.setValUsuario("");
+        }else{
             nuevaCuenta.setValUsuario("Usuario Registrado");
             camposRequeridos++;
-        }else{
-            nuevaCuenta.setValUsuario("");
         }
     }
     
