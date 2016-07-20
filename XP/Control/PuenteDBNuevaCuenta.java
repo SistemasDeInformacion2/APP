@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package XP.Control;
+package control;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,8 +20,33 @@ public class PuenteDBNuevaCuenta extends PuenteDB{
         super();
     }
     
+    public boolean estaRegistrado(String nombre, String apellido){
+        boolean registrado = false;
+        String consulta = "SELECT \"NOMBRES\", \"APELLIDOS\" FROM \"PERSONA\" WHERE \"NOMBRES\"='"+nombre+"' AND  \"APELLIDOS\"='"+apellido+"'";
+        
+        try{
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+            
+            if(rs.next()){
+                registrado = true;
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, ex, "Error de conexion", JOptionPane.ERROR_MESSAGE);
+        }
+//        finally{
+//            try {
+//                connection.close();
+//            } catch (SQLException ex2) {
+//                JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+        
+        return registrado;
+    }
+    
     public boolean estaDisponibleUser(String usuario){
-        boolean disponible = false;
+        boolean disponible = true;
         String consulta = "SELECT \"LOGIN\" FROM \"USER\" WHERE \"LOGIN\"='" + usuario + "'";
         
         try{
@@ -29,18 +54,18 @@ public class PuenteDBNuevaCuenta extends PuenteDB{
             ResultSet rs = st.executeQuery(consulta);
             
             if(rs.next()){
-                disponible = true;
+                disponible = false;
             }
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex, "Error de conexion", JOptionPane.ERROR_MESSAGE);
         }
-        finally{
-            try {
-                connection.close();
-            } catch (SQLException ex2) {
-                JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+//        finally{
+//            try {
+//                connection.close();
+//            } catch (SQLException ex2) {
+//                JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
         
         return disponible;
     }
@@ -75,12 +100,20 @@ public class PuenteDBNuevaCuenta extends PuenteDB{
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex, "Error de conexion", JOptionPane.ERROR_MESSAGE);
         }
-        finally{
-            try {
+//        finally{
+//            try {
+//                connection.close();
+//            } catch (SQLException ex2) {
+//                JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+    }
+    
+    public void cerrar(){
+        try {
                 connection.close();
             } catch (SQLException ex2) {
                 JOptionPane.showMessageDialog(null, ex2, "Error de desconexion", JOptionPane.ERROR_MESSAGE);
             }
-        }
     }
 }
